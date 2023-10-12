@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов»
 
-* Студент: [Saykho1 Saryglar](https://up.htmlacademy.ru/react/14/user/2061675).
-* Наставник: `Неизвестно`.
+* Студент: [Saykho Saryglar](https://up.htmlacademy.ru/react/14/user/2061675).
+* Наставник: [Антон Ткачук](https://htmlacademy.ru/profile/id2397393).
 
 ---
 
