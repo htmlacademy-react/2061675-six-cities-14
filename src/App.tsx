@@ -1,7 +1,8 @@
-import { Main } from './pages/main/Main.tsx';
+import { Main } from './pages/main';
+import { PlacesCount } from './const/placesCount.ts';
 
 export default function App() {
   return (
-    <Main/>
+    <Main placesCount={PlacesCount.count}/>
   );
 }
