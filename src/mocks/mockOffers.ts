@@ -80,7 +80,7 @@ export const MockOffers: Offer[] = [
       'https://14.react.pages.academy/static/offer/13.jpg'
     ],
     title: 'House in countryside',
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 2.8,
     type: 'room',
