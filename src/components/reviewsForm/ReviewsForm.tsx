@@ -7,11 +7,13 @@ export const ReviewsForm: React.FC = () => {
   });
 
   const handleRatingChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({...formData, rating: event.target.value});
+    const rating = event.target.value;
+    setFormData({...formData, rating: rating});
   };
 
   const handleReviewChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setFormData({...formData, review: event.target.value});
+    const review = event.target.value;
+    setFormData((data) => ({...data, review: review}));
   };
 
   const handleSubmit = (event: React.FormEvent) => {
