@@ -1,19 +1,18 @@
 import React from 'react';
 import { MockOffers } from '../../mocks';
 import { Card } from '../card';
-import { Offer } from '../../types/offer.ts';
+import { OfferType } from '../../types/offer.ts';
 
 export const OffersList: React.FC<{ sortOption: string }> = ({sortOption}) => {
-  const getSortedOffers = (): Offer[] => {
-    switch (sortOption) {
-      case 'PriceLowToHigh':
-        return MockOffers.slice().sort((a, b) => a.price - b.price);
-      case 'PriceHighToLow':
-        return MockOffers.slice().sort((a, b) => b.price - a.price);
-      case 'TopRatedFirst':
-        return MockOffers.slice().sort((a, b) => b.rating - a.rating);
-      default:
-        return MockOffers;
+  const getSortedOffers = (): OfferType[] => {
+    if (sortOption === 'PriceLowToHigh') {
+      return MockOffers.slice().sort((a: OfferType, b: OfferType) => a.price - b.price);
+    } else if (sortOption === 'PriceHighToLow') {
+      return MockOffers.slice().sort((a: OfferType, b: OfferType) => b.price - a.price);
+    } else if (sortOption === 'TopRatedFirst') {
+      return MockOffers.slice().sort((a: OfferType, b: OfferType) => b.rating - a.rating);
+    } else {
+      return MockOffers;
     }
   };
   return (

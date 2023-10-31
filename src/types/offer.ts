@@ -2,7 +2,7 @@ import { City } from './city.ts';
 import { Host } from './host.ts';
 import { Location } from './location.ts';
 
-export type Offer = {
+export type OfferType = {
   city: City;
   previewImage: string;
   images: string[];
