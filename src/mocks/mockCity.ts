@@ -1,4 +1,4 @@
-import { City } from '../types/city.ts';
+import { City } from '../types';
 
 export const MockCity: City = {
   name: 'Amsterdam',

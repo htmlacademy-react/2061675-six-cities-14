@@ -7,7 +7,7 @@ import { Favorites } from './pages/favorites';
 import { PrivateRoute } from './components/privateRoute';
 import { PlacesCount } from './const/placesCount.ts';
 import { Error } from './components/error';
-import { OfferType } from './types/offer.ts';
+import { OfferType } from './types';
 
 type AppProps = {
   offers: OfferType[];

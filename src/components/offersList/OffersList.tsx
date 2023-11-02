@@ -1,7 +1,7 @@
 import React from 'react';
 import { MockOffers } from '../../mocks';
 import { Card } from '../card';
-import { OfferType } from '../../types/offer.ts';
+import { OfferType } from '../../types';
 
 export const OffersList: React.FC<{ sortOption: string }> = ({sortOption}) => {
   const getSortedOffers = (): OfferType[] => {

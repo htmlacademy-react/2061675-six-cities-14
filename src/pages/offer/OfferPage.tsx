@@ -1,7 +1,7 @@
 import React from 'react';
 import { Header } from '../../components/header';
 import { useParams } from 'react-router-dom';
-import { OfferType } from '../../types/offer.ts';
+import { OfferType } from '../../types';
 import { Offer } from '../../components/offer';
 
 type OfferProps = {

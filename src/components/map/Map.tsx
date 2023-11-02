@@ -1,9 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import { City } from '../../types/city.ts';
+import { City, OfferType } from '../../types/';
 import { Icon, layerGroup, Marker } from 'leaflet';
 import { URL_MARKER_ACTIVE, URL_MARKER_DEFAULT } from '../../const/urlMarkers.ts';
 import useMap from '../../hooks/useMap.ts';
-import { OfferType } from '../../types/offer.ts';
 
 type MapProps = {
   city: City;
