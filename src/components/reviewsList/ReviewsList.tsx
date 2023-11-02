@@ -1,6 +1,6 @@
 import React from 'react';
 import { ReviewsForm } from '../reviewsForm';
-import { MockReviews } from '../../mocks/mockReviews.ts';
+import { MockReviews } from '../../mocks';
 import { Review } from '../review';
 
 export const ReviewsList: React.FC = () => (

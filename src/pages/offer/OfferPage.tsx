@@ -3,6 +3,7 @@ import { Header } from '../../components/header';
 import { useParams } from 'react-router-dom';
 import { OfferType } from '../../types';
 import { Offer } from '../../components/offer';
+import { MockCity, MockNearby } from '../../mocks';
 
 type OfferProps = {
   offers: OfferType[];
@@ -15,7 +16,7 @@ export const OfferPage: React.FC<OfferProps> = ({offers}) => {
       <Header/>
       {offer &&
         <main className="page__main page__main--offer">
-          <Offer offer={offer} />
+          <Offer offer={offer} points={MockNearby} city={MockCity} />
           <div className="container">
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
