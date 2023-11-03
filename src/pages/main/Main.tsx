@@ -74,7 +74,7 @@ export const Main: React.FC<MainProps> = ({placesCount, city, points}) => {
                         <option value="TopRatedFirst">Top rated first</option>
                       </select>
                     </form>
-                    <OffersList sortOption={sortOption} offers={Points} onCardHover={handleCardHover}/>
+                    <OffersList offers={Points} onCardHover={handleCardHover} className='cities__card' classNameWrapper='cities__image-wrapper'/>
                   </section>
                   <div className="cities__right-section">
                     <section className='cities__map map'>
