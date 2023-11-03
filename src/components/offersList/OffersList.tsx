@@ -8,9 +8,20 @@ type OffersListProps = {
   onCardHover?: (offerId: OfferType['id'] | null) => void;
   className?: string;
   classNameWrapper?: string;
+  classNameInfo?: string;
+  imgWidth?: string;
+  imgHeight?: string;
 }
 
-export const OffersList: React.FC<OffersListProps> = ({ offers, onCardHover, className, classNameWrapper}) => {
+export const OffersList: React.FC<OffersListProps> = ({
+  offers,
+  onCardHover,
+  className,
+  classNameWrapper,
+  classNameInfo,
+  imgWidth,
+  imgHeight
+}) => {
   // const getSortedOffers = (): OfferType[] => {
   //   if (sortOption === 'PriceLowToHigh') {
   //     return offers.slice().sort((a: OfferType, b: OfferType) => a.price - b.price);
@@ -23,10 +34,11 @@ export const OffersList: React.FC<OffersListProps> = ({ offers, onCardHover, cla
   //   }
   // };
   return (
-    <div className="cities__places-list places__list tabs__content">
+    <>
       {offers.map((offer) => (
-        <Card offer={offer} key={offer.id} onCardHover={onCardHover} className={className} classNameWrapper={classNameWrapper} />
+        <Card offer={offer} key={offer.id} onCardHover={onCardHover} className={className}
+          classNameWrapper={classNameWrapper} classNameInfo={classNameInfo} imgWidth={imgWidth} imgHeight={imgHeight} />
       ))}
-    </div>
+    </>
   );
 };

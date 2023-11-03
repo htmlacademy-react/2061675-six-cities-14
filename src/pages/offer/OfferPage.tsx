@@ -17,12 +17,18 @@ export const OfferPage: React.FC<OfferProps> = ({offers}) => {
       <Header/>
       {offer &&
         <main className="page__main page__main--offer">
-          <Offer offer={offer} points={MockNearby} city={MockCity} />
+          <Offer offer={offer} points={MockNearby} city={MockCity}/>
           <div className="container">
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <div className="near-places__list places__list">
-                <OffersList offers={MockNearby} classNameWrapper='near-places__image-wrapper' className='near-places__card' />
+                <OffersList
+                  offers={MockNearby}
+                  classNameWrapper="near-places__image-wrapper"
+                  className="near-places__card"
+                  imgHeight="200"
+                  imgWidth="260"
+                />
               </div>
             </section>
           </div>

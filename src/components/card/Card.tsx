@@ -7,9 +7,20 @@ export type CardProps = {
   onCardHover?: (offerId: OfferType['id'] | null) => void;
   className?: string;
   classNameWrapper?: string;
+  classNameInfo?: string;
+  imgWidth?: string;
+  imgHeight?: string;
 }
 
-export const Card: React.FC<CardProps> = ({offer, onCardHover, className, classNameWrapper}) => {
+export const Card: React.FC<CardProps> = ({
+  offer,
+  onCardHover,
+  className,
+  classNameWrapper,
+  classNameInfo,
+  imgHeight,
+  imgWidth
+}) => {
   function handleMouseEnter() {
     onCardHover?.(offer.id);
   }
@@ -19,7 +30,9 @@ export const Card: React.FC<CardProps> = ({offer, onCardHover, className, classN
   }
 
   return (
-    <article className={`${className} place-card`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} key={offer.id}>
+    <article className={`${className} place-card`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
+      key={offer.id}
+    >
       {offer.isPremium ? (
         <div className="place-card__mark">
           <span>Premium</span>
@@ -27,10 +40,10 @@ export const Card: React.FC<CardProps> = ({offer, onCardHover, className, classN
       ) : ''}
       <div className={`${classNameWrapper} place-card__image-wrapper`}>
         <a href="#">
-          <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image"/>
+          <img className="place-card__image" src={offer.previewImage} width={imgWidth} height={imgHeight} alt="Place image"/>
         </a>
       </div>
-      <div className="place-card__info">
+      <div className={`${classNameInfo} place-card__info`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{offer.price}</b>
