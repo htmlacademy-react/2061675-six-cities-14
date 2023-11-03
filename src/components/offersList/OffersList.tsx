@@ -21,7 +21,7 @@ export const OffersList: React.FC<OffersListProps> = ({
   classNameInfo,
   imgWidth,
   imgHeight
-}) => {
+}) =>
   // const getSortedOffers = (): OfferType[] => {
   //   if (sortOption === 'PriceLowToHigh') {
   //     return offers.slice().sort((a: OfferType, b: OfferType) => a.price - b.price);
@@ -33,12 +33,13 @@ export const OffersList: React.FC<OffersListProps> = ({
   //     return offers;
   //   }
   // };
-  return (
+  (
     <>
       {offers.map((offer) => (
         <Card offer={offer} key={offer.id} onCardHover={onCardHover} className={className}
-          classNameWrapper={classNameWrapper} classNameInfo={classNameInfo} imgWidth={imgWidth} imgHeight={imgHeight} />
+          classNameWrapper={classNameWrapper} classNameInfo={classNameInfo} imgWidth={imgWidth} imgHeight={imgHeight}
+        />
       ))}
     </>
   );
-};
+
