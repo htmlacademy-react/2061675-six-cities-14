@@ -5,9 +5,22 @@ import { Link } from 'react-router-dom';
 export type CardProps = {
   offer: OfferType;
   onCardHover?: (offerId: OfferType['id'] | null) => void;
+  className?: string;
+  classNameWrapper?: string;
+  classNameInfo?: string;
+  imgWidth?: string;
+  imgHeight?: string;
 }
 
-export const Card: React.FC<CardProps> = ({offer, onCardHover}) => {
+export const Card: React.FC<CardProps> = ({
+  offer,
+  onCardHover,
+  className,
+  classNameWrapper,
+  classNameInfo,
+  imgHeight,
+  imgWidth
+}) => {
   function handleMouseEnter() {
     onCardHover?.(offer.id);
   }
@@ -17,18 +30,20 @@ export const Card: React.FC<CardProps> = ({offer, onCardHover}) => {
   }
 
   return (
-    <article className="cities__card place-card" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} key={offer.id}>
+    <article className={`${className} place-card`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
+      key={offer.id}
+    >
       {offer.isPremium ? (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
       ) : ''}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`${classNameWrapper} place-card__image-wrapper`}>
         <a href="#">
-          <img className="place-card__image" src={offer.previewImage} width="260" height="200" alt="Place image"/>
+          <img className="place-card__image" src={offer.previewImage} width={imgWidth} height={imgHeight} alt="Place image"/>
         </a>
       </div>
-      <div className="place-card__info">
+      <div className={`${classNameInfo} place-card__info`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{offer.price}</b>

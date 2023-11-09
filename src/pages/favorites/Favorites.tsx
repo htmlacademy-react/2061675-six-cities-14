@@ -1,9 +1,9 @@
 import React from 'react';
 import { Header } from '../../components/header';
-import { FavoriteCard } from '../../components/favoriteCard';
 import { Footer } from '../../components/footer';
 import { MockOffers } from '../../mocks';
 import { FavoriteEmpty } from '../../components/favoriteEmpty';
+import { OffersList } from '../../components/offersList';
 
 export const Favorites: React.FC = () => (
   <div className="page">
@@ -24,9 +24,14 @@ export const Favorites: React.FC = () => (
                     </div>
                   </div>
                   <div className="favorites__places">
-                    {MockOffers.map((offer) => (
-                      <FavoriteCard offer={offer} key={offer.id}/>
-                    ))}
+                    <OffersList
+                      className="favorites__card"
+                      classNameWrapper="favorites__image-wrapper"
+                      offers={MockOffers}
+                      classNameInfo="favorites__card-info"
+                      imgWidth="150"
+                      imgHeight="110"
+                    />
                   </div>
                 </li>
 
@@ -39,9 +44,14 @@ export const Favorites: React.FC = () => (
                     </div>
                   </div>
                   <div className="favorites__places">
-                    {MockOffers.map((offer) => (
-                      <FavoriteCard offer={offer} key={offer.id}/>
-                    ))}
+                    <OffersList
+                      className="favorites__card"
+                      classNameWrapper="favorites__image-wrapper"
+                      offers={MockOffers}
+                      classNameInfo="favorites__card-info"
+                      imgWidth="150"
+                      imgHeight="110"
+                    />
                   </div>
                 </li>
               </ul>
