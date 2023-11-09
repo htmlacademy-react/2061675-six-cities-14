@@ -1,7 +1,3 @@
-export const Settings = {
-  count: 312
-};
-
 export enum AppRoute {
   Login = '/login',
   Main = '/',
