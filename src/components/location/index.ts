@@ -1,1 +1,1 @@
-export * from './Location.tsx';
+export * from './location.tsx';

@@ -3,7 +3,7 @@ import { Header } from '../../components/header';
 import { Location } from '../../components/location';
 import { Points } from '../../mocks';
 import { Empty } from '../../components/empty';
-import { OffersList } from '../../components/offersList';
+import { OffersList } from '../../components/offers-list';
 import { Location as LocationType, OfferType } from '../../types';
 import { Map } from '../../components/map';
 

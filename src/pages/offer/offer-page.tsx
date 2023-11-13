@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { OfferType } from '../../types';
 import { Offer } from '../../components/offer';
 import { MockCity, MockNearby } from '../../mocks';
-import { OffersList } from '../../components/offersList';
+import { OffersList } from '../../components/offers-list';
 
 type OfferProps = {
   offers: OfferType[];

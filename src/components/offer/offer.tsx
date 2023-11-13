@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReviewsList } from '../reviewsList';
+import { ReviewsList } from '../reviews-list';
 import { Map } from '../map';
 import { OfferType, Location } from '../../types';
 
