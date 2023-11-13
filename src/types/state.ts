@@ -1,4 +1,4 @@
-import { store } from '../store/store.ts';
+import { store } from '../store/';
 
 export type RootState = ReturnType<typeof store.getState>;
 
