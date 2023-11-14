@@ -4,17 +4,25 @@ import { Location } from '../../components/location';
 import { Points } from '../../mocks';
 import { Empty } from '../../components/empty';
 import { OffersList } from '../../components/offers-list';
-import { Location as LocationType, OfferType } from '../../types';
+import { City, Location as LocationType, OfferType } from '../../types';
 import { Map } from '../../components/map';
+import { useAppDispatch } from '../../hooks/use-dispatch.ts';
+import { changeCityAction } from '../../store/action.ts';
+import { useAppSelector } from '../../hooks/use-typed-selector.ts';
 
 type MainProps = {
   placesCount: number;
   city: LocationType;
   points: OfferType[];
+  cities: City[];
 }
-export const Main: React.FC<MainProps> = ({placesCount, city, points}) => {
+export const Main: React.FC<MainProps> = ({placesCount, city, points, cities}) => {
   const [sortOption, setSortOption] = useState('Popular');
   const [selectedPoint, setSelectedPoint] = useState<OfferType['id'] | null>(null);
+
+  const dispatch = useAppDispatch();
+  // const selectedCity = useSelector(getSelectedCitySelector);
+  const selectedCity = useAppSelector((state) => state.cities.city);
 
   const handleCardHover = (offerId: OfferType['id'] | null) => {
     setSelectedPoint(offerId);
@@ -32,24 +40,15 @@ export const Main: React.FC<MainProps> = ({placesCount, city, points}) => {
         <div className="tabs">
           <section className="locations container">
             <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <Location locationName="Paris" active=""/>
-              </li>
-              <li className="locations__item">
-                <Location locationName="Cologne" active=""/>
-              </li>
-              <li className="locations__item">
-                <Location locationName="Brussels" active=""/>
-              </li>
-              <li className="locations__item">
-                <Location locationName="Amsterdam" active="tabs__item--active"/>
-              </li>
-              <li className="locations__item">
-                <Location locationName="Hamburg" active=""/>
-              </li>
-              <li className="locations__item">
-                <Location locationName="Dusseldorf" active=""/>
-              </li>
+              {cities.map((c) => (
+                <li key={c.name} className="locations__item">
+                  <Location
+                    locationName={c.name}
+                    active={`${selectedCity.name === c.name ? 'locations__item-link tabs__item tabs__item--active' : 'locations__item-link tabs__item'}`}
+                    onClick={() => dispatch(changeCityAction({city: c}))}
+                  />
+                </li>
+              ))}
             </ul>
           </section>
         </div>

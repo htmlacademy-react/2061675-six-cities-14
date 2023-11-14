@@ -8,7 +8,7 @@ import { PrivateRoute } from './components/private-route';
 import { PlacesCount } from './const/places-count.ts';
 import { Error } from './components/error';
 import { OfferType } from './types';
-import { MockCity, Points } from './mocks';
+import { MockCities, MockCity, Points } from './mocks';
 
 type AppProps = {
   offers: OfferType[];
@@ -17,7 +17,7 @@ export default function App({offers} : AppProps) {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={AppRoute.Main} element={<Main placesCount={PlacesCount.count} city={MockCity} points={Points} />}/>
+        <Route path={AppRoute.Main} element={<Main placesCount={PlacesCount.count} city={MockCity} points={Points} cities={MockCities} />}/>
         <Route path={AppRoute.Login} element={<Login/>}/>
         <Route path={AppRoute.Offer} element={<OfferPage offers={offers}/>}/>
         <Route path={AppRoute.Favorites} element={<PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}><Favorites/></PrivateRoute>}></Route>
