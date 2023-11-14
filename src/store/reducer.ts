@@ -19,8 +19,9 @@ export const citiesReducer = createReducer(initialState, (builder) =>
       ...state,
       city: payload.city,
     }))
-    .addCase(fillOffersAction, (state) => ({
+    .addCase(fillOffersAction, (state, {payload}) => ({
       ...state,
+      offers: payload.offers,
     }))
 );
 

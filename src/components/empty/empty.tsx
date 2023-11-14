@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const Empty: React.FC = () => (
-  <>
+  <div className="cities__places-container cities__places-container--empty container">
     <section className="cities__no-places">
       <div className="cities__status-wrapper tabs__content">
         <b className="cities__status">No places to stay available</b>
@@ -11,5 +11,5 @@ export const Empty: React.FC = () => (
       </div>
     </section>
     <div className="cities__right-section"></div>
-  </>
+  </div>
 );
