@@ -26,12 +26,12 @@ export const citiesReducer = createReducer(initialState, (builder) =>
 );
 
 type WithCitiesState = {
-  city: CitiesState;
+  cities: CitiesState;
 }
 
 export const citiesStateSelector = (
   state: WithCitiesState,
-): CitiesState => state.city;
+): CitiesState => state.cities;
 
 export const getSelectedCitySelector = createSelector(
   citiesStateSelector,

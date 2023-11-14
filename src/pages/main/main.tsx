@@ -9,6 +9,8 @@ import { Map } from '../../components/map';
 import { useAppDispatch } from '../../hooks/use-dispatch.ts';
 import { changeCityAction, fillOffersAction } from '../../store/action.ts';
 import { useAppSelector } from '../../hooks/use-typed-selector.ts';
+import { useSelector } from 'react-redux';
+import { getSelectedCitySelector } from '../../store/reducer.ts';
 
 type MainProps = {
   placesCount: number;
@@ -21,8 +23,7 @@ export const Main: React.FC<MainProps> = ({placesCount, cities}) => {
   const [selectedPoint, setSelectedPoint] = useState<OfferType['id'] | null>(null);
 
   const dispatch = useAppDispatch();
-  // const selectedCity = useSelector(getSelectedCitySelector);
-  const selectedCity = useAppSelector((state) => state.cities.city);
+  const selectedCity = useSelector(getSelectedCitySelector);
   const offers = useAppSelector((state) => state.cities.offers);
   let city = MockCities.find((c) => c.name === selectedCity.name);
 
