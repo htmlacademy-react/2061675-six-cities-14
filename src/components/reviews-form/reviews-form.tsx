@@ -26,10 +26,9 @@ export const ReviewsForm: React.FC = () => {
       <div className="reviews__rating-form form__rating">
         {
           Stars.map((star) => (
-            <>
+            <div key={star.id}>
               <input
                 className="form__rating-input visually-hidden"
-                key={star.id}
                 name="rating"
                 value={star.value}
                 id={star.id}
@@ -41,7 +40,7 @@ export const ReviewsForm: React.FC = () => {
                   <use xlinkHref="#icon-star"></use>
                 </svg>
               </label>
-            </>
+            </div>
           ))
         }
       </div>
