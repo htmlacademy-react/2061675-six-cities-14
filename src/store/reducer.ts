@@ -1,16 +1,19 @@
 import { City, OfferType } from '../types';
 import { createReducer, createSelector } from '@reduxjs/toolkit';
-import { changeCityAction, fillOffersAction } from './action.ts';
+import { changeCityAction, fillOffersAction, requireAuthorization } from './action.ts';
 import { MockCities } from '../mocks';
+import { AuthorizationStatus } from '../const/settings.ts';
 
 interface CitiesState {
   city: City;
   offers: OfferType[];
+  authorizationStatus: AuthorizationStatus;
 }
 
 const initialState: CitiesState = {
   city: MockCities[1],
   offers: [],
+  authorizationStatus: AuthorizationStatus.Unknown,
 };
 
 export const citiesReducer = createReducer(initialState, (builder) =>
@@ -22,6 +25,10 @@ export const citiesReducer = createReducer(initialState, (builder) =>
     .addCase(fillOffersAction, (state, {payload}) => ({
       ...state,
       offers: payload.offers,
+    }))
+    .addCase(requireAuthorization, (state, {payload}) => ({
+      ...state,
+      authorizationStatus: payload.authorizationStatus,
     }))
 );
 
