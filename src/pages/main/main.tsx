@@ -11,6 +11,7 @@ import { changeCityAction, fillOffersAction } from '../../store/action.ts';
 import { useAppSelector } from '../../hooks/use-typed-selector.ts';
 import { useSelector } from 'react-redux';
 import { getSelectedCitySelector } from '../../store/reducer.ts';
+import { SortOptions } from '../../components/sort-options';
 
 type MainProps = {
   placesCount: number;
@@ -73,19 +74,7 @@ export const Main: React.FC<MainProps> = ({placesCount, cities}) => {
                 <section className="cities__places places">
                   <h2 className="visually-hidden">Places</h2>
                   <b className="places__found">{placesCount} places to stay in Amsterdam</b>
-                  <form className="places__sorting" action="#" method="get">
-                    <span className="places__sorting-caption">Sort by</span>
-                    <select
-                      className="places__sorting-type"
-                      value={sortOption}
-                      onChange={handleSortChange}
-                    >
-                      <option value="Popular">Popular</option>
-                      <option value="PriceLowToHigh">Price: low to high</option>
-                      <option value="PriceHighToLow">Price: high to low</option>
-                      <option value="TopRatedFirst">Top rated first</option>
-                    </select>
-                  </form>
+                  <SortOptions selectedSortOption={sortOption} onSortChange={handleSortChange} />
                   <div className="cities__places-list places__list tabs__content">
                     <OffersList
                       offers={offersInSelectedCity}
@@ -94,6 +83,7 @@ export const Main: React.FC<MainProps> = ({placesCount, cities}) => {
                       classNameWrapper="cities__image-wrapper"
                       imgWidth="260"
                       imgHeight="200"
+                      sortOption={sortOption}
                     />
                   </div>
                 </section>
