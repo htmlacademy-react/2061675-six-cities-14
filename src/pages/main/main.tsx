@@ -43,7 +43,7 @@ export const Main: React.FC<MainProps> = ({placesCount, cities}) => {
   };
   useEffect(() => {
     dispatch(fillOffersAction({offers: MockOffers}));
-  }, [dispatch]);
+  }, []);
 
   return (
     <div className="page page--gray page--main">
