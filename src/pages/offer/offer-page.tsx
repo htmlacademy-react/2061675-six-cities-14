@@ -7,13 +7,11 @@ import { MockCities, MockNearby } from '../../mocks';
 import { OffersList } from '../../components/offers-list';
 import { Map } from '../../components/map';
 import { useSelector } from 'react-redux';
-import { getSelectedCitySelector } from '../../store/reducer.ts';
+import { getOffersSelector, getSelectedCitySelector } from '../../store/reducer.ts';
 
-type OfferProps = {
-  offers: OfferType[];
-}
-export const OfferPage: React.FC<OfferProps> = ({offers}) => {
+export const OfferPage: React.FC = () => {
   const {id} = useParams();
+  const offers = useSelector(getOffersSelector);
   const offer = offers.find((o) => o.id === Number(id));
   const [selectedPoint, setSelectedPoint] = useState<OfferType['id'] | null>(null);
 

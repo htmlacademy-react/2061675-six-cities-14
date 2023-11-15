@@ -3,6 +3,7 @@ import { createReducer, createSelector } from '@reduxjs/toolkit';
 import { changeCityAction, fillOffersAction, requireAuthorization } from './action.ts';
 import { MockCities } from '../mocks';
 import { AuthorizationStatus } from '../const/settings.ts';
+import { fetchOffers } from './async-actions/fetch-offers.ts';
 
 interface CitiesState {
   city: City;
@@ -30,6 +31,13 @@ export const citiesReducer = createReducer(initialState, (builder) =>
       ...state,
       authorizationStatus: payload.authorizationStatus,
     }))
+    .addCase(fetchOffers.pending, (state) => ({
+      ...state
+    }))
+    .addCase(fetchOffers.fulfilled, (state, {payload}) => ({
+      ...state,
+      offers: payload,
+    }))
 );
 
 type WithCitiesState = {
@@ -43,4 +51,9 @@ export const citiesStateSelector = (
 export const getSelectedCitySelector = createSelector(
   citiesStateSelector,
   (state) => state.city
+);
+
+export const getOffersSelector = createSelector(
+  citiesStateSelector,
+  (state) => state.offers
 );

@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Header } from '../../components/header';
 import { Location } from '../../components/location';
-import { MockCities, MockOffers } from '../../mocks';
+import { MockCities } from '../../mocks';
 import { Empty } from '../../components/empty';
 import { OffersList } from '../../components/offers-list';
 import { City, OfferType } from '../../types';
 import { Map } from '../../components/map';
 import { useAppDispatch } from '../../hooks/use-dispatch.ts';
-import { changeCityAction, fillOffersAction } from '../../store/action.ts';
+import { changeCityAction } from '../../store/action.ts';
 import { useAppSelector } from '../../hooks/use-typed-selector.ts';
 import { useSelector } from 'react-redux';
 import { getSelectedCitySelector } from '../../store/reducer.ts';
 import { SortOptions } from '../../components/sort-options';
+import { fetchOffers } from '../../store/async-actions/fetch-offers.ts';
 
 type MainProps = {
   placesCount: number;
@@ -42,7 +43,7 @@ export const Main: React.FC<MainProps> = ({placesCount, cities}) => {
     setSortOption(event.target.value);
   };
   useEffect(() => {
-    dispatch(fillOffersAction({offers: MockOffers}));
+    dispatch(fetchOffers());
   }, []);
 
   return (
