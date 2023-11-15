@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Header } from '../../components/header';
 import { Location } from '../../components/location';
-import { MockCities } from '../../mocks';
 import { Empty } from '../../components/empty';
 import { OffersList } from '../../components/offers-list';
-import { City, OfferType } from '../../types';
+import { OfferType } from '../../types';
 import { Map } from '../../components/map';
 import { useAppDispatch } from '../../hooks/use-dispatch.ts';
 import { changeCityAction } from '../../store/action.ts';
 import { useAppSelector } from '../../hooks/use-typed-selector.ts';
 import { useSelector } from 'react-redux';
-import { getSelectedCitySelector } from '../../store/reducer.ts';
+import { getCitiesSelector, getSelectedCitySelector } from '../../store/reducer.ts';
 import { SortOptions } from '../../components/sort-options';
 import { fetchOffers } from '../../store/async-actions/fetch-offers.ts';
 
@@ -18,22 +17,22 @@ type MainProps = {
   placesCount: number;
   // city: LocationType;
   // points: OfferType[];
-  cities: City[];
+  // cities: City[];
 }
-export const Main: React.FC<MainProps> = ({placesCount, cities}) => {
+export const Main: React.FC<MainProps> = ({placesCount}) => {
   const [sortOption, setSortOption] = useState('Popular');
   const [selectedPoint, setSelectedPoint] = useState<OfferType['id'] | null>(null);
 
   const dispatch = useAppDispatch();
+  const citiesSet = useSelector(getCitiesSelector);
   const selectedCity = useSelector(getSelectedCitySelector);
   const offers = useAppSelector((state) => state.cities.offers);
-  let city = MockCities.find((c) => c.name === selectedCity.name);
+  let city = citiesSet.find((c) => c.name === selectedCity?.name);
 
   if (city === undefined) {
-    city = MockCities[1];
+    city = citiesSet[0];
   }
-
-  const offersInSelectedCity = offers.filter((offer) => offer.city.name === selectedCity.name);
+  const offersInSelectedCity = offers.filter((offer) => offer.city.name === selectedCity?.name);
 
   const handleCardHover = (offerId: OfferType['id'] | null) => {
     setSelectedPoint(offerId);
@@ -56,11 +55,11 @@ export const Main: React.FC<MainProps> = ({placesCount, cities}) => {
         <div className="tabs">
           <section className="locations container">
             <ul className="locations__list tabs__list">
-              {cities.map((c) => (
+              {citiesSet.map((c) => (
                 <li key={c.name} className="locations__item">
                   <Location
                     locationName={c.name}
-                    active={`${selectedCity.name === c.name ? 'locations__item-link tabs__item tabs__item--active' : 'locations__item-link tabs__item'}`}
+                    active={`${selectedCity?.name === c.name ? 'locations__item-link tabs__item tabs__item--active' : 'locations__item-link tabs__item'}`}
                     onClick={() => dispatch(changeCityAction({city: c}))}
                   />
                 </li>

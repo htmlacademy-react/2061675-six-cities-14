@@ -1,6 +1,6 @@
-import { OfferType } from '../types';
+import { SelectedOffer } from '../types';
 
-export const MockOffers: OfferType[] = [
+export const MockOffers: SelectedOffer[] = [
   {
     city: {
       name: 'Dusseldorf',
@@ -51,7 +51,7 @@ export const MockOffers: OfferType[] = [
       longitude: 6.779314,
       zoom: 16
     },
-    id: 1,
+    id: 'c543be16-928d-4b42-85e8-28d6350d14bc',
   },
   {
     city: {
@@ -104,7 +104,7 @@ export const MockOffers: OfferType[] = [
       longitude: 4.902976,
       zoom: 16
     },
-    id: 2
+    id: 'c543be16-928d-4b42-85e8-28d6350d14bc'
   },
   {
     city: {
@@ -164,7 +164,7 @@ export const MockOffers: OfferType[] = [
       longitude: 4.3376969999999995,
       zoom: 16
     },
-    id: 3
+    id: 'c543be16-928d-4b42-85e8-28d6350d14bc'
   },
   {
     city: {
@@ -218,6 +218,6 @@ export const MockOffers: OfferType[] = [
       longitude: 4.883976,
       zoom: 16
     },
-    id: 4
+    id: 'c543be16-928d-4b42-85e8-28d6350d14bc'
   },
 ];

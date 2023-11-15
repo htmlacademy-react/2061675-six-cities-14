@@ -1,29 +1,38 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Header } from '../../components/header';
 import { useParams } from 'react-router-dom';
 import { OfferType } from '../../types';
 import { Offer } from '../../components/offer';
-import { MockCities, MockNearby } from '../../mocks';
+import { MockNearby } from '../../mocks';
 import { OffersList } from '../../components/offers-list';
 import { Map } from '../../components/map';
 import { useSelector } from 'react-redux';
-import { getOffersSelector, getSelectedCitySelector } from '../../store/reducer.ts';
+import { getSelectedOfferSelector } from '../../store/reducer.ts';
+import { useAppDispatch } from '../../hooks/use-dispatch.ts';
+import { getSelectedOfferAction } from '../../store/async-actions/get-selected-offer.ts';
 
 export const OfferPage: React.FC = () => {
   const {id} = useParams();
-  const offers = useSelector(getOffersSelector);
-  const offer = offers.find((o) => o.id === Number(id));
+  const offer = useSelector(getSelectedOfferSelector);
   const [selectedPoint, setSelectedPoint] = useState<OfferType['id'] | null>(null);
-
-  const selectedCity = useSelector(getSelectedCitySelector);
-  let city = MockCities.find((c) => c.name === selectedCity.name);
-
-  if (city === undefined) {
-    city = MockCities[1];
-  }
+  const dispatch = useAppDispatch();
+  // let city = MockCities.find((c) => c.name === selectedCity.name);
+  //
+  // if (city === undefined) {
+  //   city = MockCities[1];
+  // }
   const handleCardHover = (offerId: OfferType['id'] | null) => {
     setSelectedPoint(offerId);
   };
+
+  useEffect(() => {
+    if(id) {
+      dispatch(getSelectedOfferAction(id));
+    }
+  }, []);
+  if (!id) {
+    return <div>invalid id</div>;
+  }
 
   return (
     <div className="page">
@@ -31,9 +40,9 @@ export const OfferPage: React.FC = () => {
       {offer &&
         <main className="page__main page__main--offer">
           <section className="offer">
-            <Offer offer={offer} />
+            <Offer offer={offer}/>
             <section className="offer__map map">
-              <Map city={city} points={MockNearby} selectedPoint={selectedPoint} />
+              <Map city={offer.city} points={MockNearby} selectedPoint={selectedPoint}/>
             </section>
           </section>
           <div className="container">
