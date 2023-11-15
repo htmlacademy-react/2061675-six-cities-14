@@ -40,15 +40,16 @@ export const Main: React.FC<MainProps> = ({placesCount, cities}) => {
   const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSortOption(event.target.value);
   };
-
   useEffect(() => {
     dispatch(fillOffersAction({offers: MockOffers}));
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="page page--gray page--main">
       <Header/>
-      <main className={`page__main page__main--index ${offersInSelectedCity.length === 0 ? "page__main--index-empty" : ''}`}>
+      <main
+        className={`page__main page__main--index ${offersInSelectedCity.length === 0 ? 'page__main--index-empty' : ''}`}
+      >
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
