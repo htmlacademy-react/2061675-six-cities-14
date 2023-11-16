@@ -42,8 +42,11 @@ export const Main: React.FC<MainProps> = ({placesCount}) => {
     setSortOption(event.target.value);
   };
   useEffect(() => {
+    if (!selectedCity) {
+      dispatch(changeCityAction({city: {name: 'Paris'}}));
+    }
     dispatch(fetchOffers());
-  }, []);
+  }, [selectedCity]);
 
   return (
     <div className="page page--gray page--main">
