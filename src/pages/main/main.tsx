@@ -43,7 +43,7 @@ export const Main: React.FC<MainProps> = ({placesCount}) => {
   };
   useEffect(() => {
     if (!selectedCity) {
-      dispatch(changeCityAction({city: {name: 'Paris'}}));
+      dispatch(changeCityAction({city: {name: 'Paris', location: {zoom: 13, latitude: 48.85661, longitude: 2.351499}}}));
     }
     dispatch(fetchOffers());
   }, [selectedCity]);

@@ -4,12 +4,15 @@ import { changeCityAction, fillOffersAction, requireAuthorization } from './acti
 import { AuthorizationStatus } from '../const/settings.ts';
 import { fetchOffers } from './async-actions/fetch-offers.ts';
 import { getSelectedOfferAction } from './async-actions/get-selected-offer.ts';
+import { StateStatus } from '../const/state-status.ts';
 
 interface CitiesState {
   city: City | undefined;
   offers: OfferType[];
   authorizationStatus: AuthorizationStatus;
   selectedOffer: SelectedOffer | undefined;
+  status: StateStatus;
+  loading: boolean;
 }
 
 const initialState: CitiesState = {
@@ -17,6 +20,8 @@ const initialState: CitiesState = {
   offers: [],
   authorizationStatus: AuthorizationStatus.Unknown,
   selectedOffer: undefined,
+  loading: false,
+  status: StateStatus.idle,
 };
 
 export const citiesReducer = createReducer(initialState, (builder) =>
@@ -34,18 +39,26 @@ export const citiesReducer = createReducer(initialState, (builder) =>
       authorizationStatus: payload.authorizationStatus,
     }))
     .addCase(fetchOffers.pending, (state) => ({
-      ...state
+      ...state,
+      status: StateStatus.loading,
+      loading: true,
     }))
     .addCase(fetchOffers.fulfilled, (state, {payload}) => ({
       ...state,
       offers: payload,
+      status: StateStatus.idle,
+      loading: false,
     }))
     .addCase(getSelectedOfferAction.pending, (state) => ({
       ...state,
+      status: StateStatus.loading,
+      loading: true,
     }))
     .addCase(getSelectedOfferAction.fulfilled, (state, {payload}) => ({
       ...state,
-      selectedOffer: payload
+      selectedOffer: payload,
+      status: StateStatus.idle,
+      loading: false,
     }))
 );
 
