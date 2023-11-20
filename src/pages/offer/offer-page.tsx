@@ -7,10 +7,10 @@ import { MockNearby } from '../../mocks';
 import { OffersList } from '../../components/offers-list';
 import { Map } from '../../components/map';
 import { useSelector } from 'react-redux';
-import { getLoadingSelector, getSelectedOfferSelector } from '../../store/reducer.ts';
 import { useAppDispatch } from '../../hooks/use-dispatch.ts';
 import { getSelectedOfferAction } from '../../store/async-actions/get-selected-offer.ts';
 import { Loader } from '../../components/loader';
+import { getLoadingSelector, getSelectedOfferSelector } from '../../store/reducers';
 
 export const OfferPage: React.FC = () => {
   const {id} = useParams();

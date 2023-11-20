@@ -1,14 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { citiesReducer } from './reducer.ts';
-import { loadingReducer } from './loading-reducer.ts';
+import { rootReducer } from './reducers/root-reducer.ts';
+import { redirect } from './middlewares/redirect.ts';
 
 export const store = configureStore({
-  reducer: {
-    cities: citiesReducer,
-    loading: loadingReducer,
-  },
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
-    }),
+    }).concat(redirect),
 });

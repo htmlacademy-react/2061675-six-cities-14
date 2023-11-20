@@ -2,7 +2,7 @@ import React from 'react';
 import { AppRoute, AuthorizationStatus } from '../../const/settings.ts';
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { getAuthorizationStatusSelector } from '../../store/reducer.ts';
+import { getAuthorizationStatusSelector } from '../../store/reducers/auth.ts';
 
 type PrivateRouteProps = {
   children: JSX.Element;

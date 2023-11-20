@@ -3,18 +3,14 @@ import { APIRoute, AppRoute, AuthorizationStatus } from '../../const/settings.ts
 import { dropToken, saveToken } from '../../services';
 import { AppDispatch, Auth, RootState, UserAuthData } from '../../types';
 import { AxiosInstance } from 'axios';
-import { redirectToRoute, requireAuthorization } from '../action.ts';
-
-// interface LoginError {
-//   message: string;
-// }
+import { redirectToRoute, requireAuthorization } from '../actions';
 
 export const checkAuthAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
   state: RootState;
   extra: AxiosInstance;
 }>(
-  'USER?CHECK_AUTH',
+  'USER/CHECK_AUTH',
   async (_, {dispatch, extra: api}) => {
     try {
       await api.get(APIRoute.Login);
