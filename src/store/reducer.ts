@@ -2,7 +2,7 @@ import { City, OfferType, SelectedOffer } from '../types';
 import { createReducer, createSelector } from '@reduxjs/toolkit';
 import { changeCityAction, fillOffersAction, requireAuthorization } from './action.ts';
 import { AuthorizationStatus } from '../const/settings.ts';
-import { fetchOffers } from './async-actions/fetch-offers.ts';
+import { fetchOffersAction } from './async-actions/fetch-offers.ts';
 import { getSelectedOfferAction } from './async-actions/get-selected-offer.ts';
 import { StateStatus } from '../const/state-status.ts';
 
@@ -38,12 +38,12 @@ export const citiesReducer = createReducer(initialState, (builder) =>
       ...state,
       authorizationStatus: payload.authorizationStatus,
     }))
-    .addCase(fetchOffers.pending, (state) => ({
+    .addCase(fetchOffersAction.pending, (state) => ({
       ...state,
       status: StateStatus.loading,
       loading: true,
     }))
-    .addCase(fetchOffers.fulfilled, (state, {payload}) => ({
+    .addCase(fetchOffersAction.fulfilled, (state, {payload}) => ({
       ...state,
       offers: payload,
       status: StateStatus.idle,
@@ -94,3 +94,9 @@ export const getLoadingSelector = createSelector(
   citiesStateSelector,
   (state) => state.loading
 );
+
+export const getAuthorizationStatusSelector = createSelector(
+  citiesStateSelector,
+  (state) => state.authorizationStatus
+);
+

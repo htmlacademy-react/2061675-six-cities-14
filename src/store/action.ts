@@ -1,6 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
 import { City, OfferType } from '../types';
-import { AuthorizationStatus } from '../const/settings.ts';
+import { AppRoute, AuthorizationStatus } from '../const/settings.ts';
 
 export const changeCityAction = createAction<{
   city: City | undefined;
@@ -13,3 +13,7 @@ export const fillOffersAction = createAction<{
 export const requireAuthorization = createAction<{
   authorizationStatus: AuthorizationStatus;
 }>('USER/REQUIRE_AUTHORIZATION');
+
+export const redirectToRoute = createAction<{
+  appRoute: AppRoute;
+}>('CITIES/REDIRECT_TO_ROUTE');

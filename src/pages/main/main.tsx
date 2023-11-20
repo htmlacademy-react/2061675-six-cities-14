@@ -11,7 +11,7 @@ import { useAppSelector } from '../../hooks/use-typed-selector.ts';
 import { useSelector } from 'react-redux';
 import { getCitiesSelector, getLoadingSelector, getSelectedCitySelector } from '../../store/reducer.ts';
 import { SortOptions } from '../../components/sort-options';
-import { fetchOffers } from '../../store/async-actions/fetch-offers.ts';
+import { fetchOffersAction } from '../../store/async-actions/fetch-offers.ts';
 import { Loader } from '../../components/loader';
 
 type MainProps = {
@@ -49,7 +49,7 @@ export const Main: React.FC<MainProps> = ({placesCount}) => {
         }
       }));
     }
-    dispatch(fetchOffers());
+    dispatch(fetchOffersAction());
   }, []);
 
   return (

@@ -6,7 +6,7 @@ interface FetchOffersError {
   message: string;
 }
 
-export const fetchOffers = createAsyncThunk<OfferType[], undefined, { rejectValue: FetchOffersError }>(
+export const fetchOffersAction = createAsyncThunk<OfferType[], undefined, { rejectValue: FetchOffersError }>(
   'CITIES/FETCH_OFFERS',
   async (_, thunkAPI) => {
     try {
