@@ -10,6 +10,7 @@ export const fetchOffers = createAsyncThunk<OfferType[], undefined, { rejectValu
   'CITIES/FETCH_OFFERS',
   async (_, thunkAPI) => {
     try {
+      // await new Promise((resolve) => setTimeout(resolve, 5000));
       return await HttpClient.get('/six-cities/offers');
     } catch (e: any) {
       return thunkAPI.rejectWithValue({

@@ -7,15 +7,17 @@ import { MockNearby } from '../../mocks';
 import { OffersList } from '../../components/offers-list';
 import { Map } from '../../components/map';
 import { useSelector } from 'react-redux';
-import { getSelectedOfferSelector } from '../../store/reducer.ts';
+import { getLoadingSelector, getSelectedOfferSelector } from '../../store/reducer.ts';
 import { useAppDispatch } from '../../hooks/use-dispatch.ts';
 import { getSelectedOfferAction } from '../../store/async-actions/get-selected-offer.ts';
+import { Loader } from '../../components/loader';
 
 export const OfferPage: React.FC = () => {
   const {id} = useParams();
   const offer = useSelector(getSelectedOfferSelector);
   const [selectedPoint, setSelectedPoint] = useState<OfferType['id'] | null>(null);
   const dispatch = useAppDispatch();
+  const isLoading = useSelector(getLoadingSelector);
   // let city = MockCities.find((c) => c.name === selectedCity.name);
   //
   // if (city === undefined) {
@@ -26,7 +28,7 @@ export const OfferPage: React.FC = () => {
   };
 
   useEffect(() => {
-    if(id) {
+    if (id) {
       dispatch(getSelectedOfferAction(id));
     }
   }, []);
@@ -37,30 +39,36 @@ export const OfferPage: React.FC = () => {
   return (
     <div className="page">
       <Header/>
-      {offer &&
-        <main className="page__main page__main--offer">
-          <section className="offer">
-            <Offer offer={offer}/>
-            <section className="offer__map map">
-              <Map city={offer.city} points={MockNearby} selectedPoint={selectedPoint}/>
+      {
+        isLoading ? (
+          <Loader/>
+        ) : (
+          offer &&
+          <main className="page__main page__main--offer">
+            <section className="offer">
+              <Offer offer={offer}/>
+              <section className="offer__map map">
+                <Map city={offer.city} points={MockNearby} selectedPoint={selectedPoint}/>
+              </section>
             </section>
-          </section>
-          <div className="container">
-            <section className="near-places places">
-              <h2 className="near-places__title">Other places in the neighbourhood</h2>
-              <div className="near-places__list places__list">
-                <OffersList
-                  offers={MockNearby}
-                  classNameWrapper="near-places__image-wrapper"
-                  className="near-places__card"
-                  imgHeight="200"
-                  imgWidth="260"
-                  onCardHover={handleCardHover}
-                />
-              </div>
-            </section>
-          </div>
-        </main>}
+            <div className="container">
+              <section className="near-places places">
+                <h2 className="near-places__title">Other places in the neighbourhood</h2>
+                <div className="near-places__list places__list">
+                  <OffersList
+                    offers={MockNearby}
+                    classNameWrapper="near-places__image-wrapper"
+                    className="near-places__card"
+                    imgHeight="200"
+                    imgWidth="260"
+                    onCardHover={handleCardHover}
+                  />
+                </div>
+              </section>
+            </div>
+          </main>
+        )
+      }
     </div>
   );
 };

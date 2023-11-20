@@ -89,3 +89,8 @@ export const getSelectedOfferSelector = createSelector(
   citiesStateSelector,
   (state) => state.selectedOffer
 );
+
+export const getLoadingSelector = createSelector(
+  citiesStateSelector,
+  (state) => state.loading
+);
