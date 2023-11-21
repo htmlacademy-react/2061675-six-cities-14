@@ -1,22 +1,27 @@
-import { AuthorizationStatus } from '../../const/settings.ts';
+import { AppRoute, AuthorizationStatus } from '../../const/settings.ts';
 import { StateStatus } from '../../const/state-status.ts';
 import { createReducer, createSelector, Reducer } from '@reduxjs/toolkit';
-import { requireAuthorization } from '../actions/auth.ts';
+import { requireAuthorization, setUserInfoAction } from '../actions/auth.ts';
 import { checkAuthAction, loginAction, logoutAction } from '../async-actions/login.ts';
+import { UserAuthData } from '../../types';
 
 interface AuthState {
   authorizationStatus: AuthorizationStatus;
   status: StateStatus;
   loading: boolean;
+  userInfo: UserAuthData | null;
+  redirectTo: AppRoute;
 }
 
 const initialState: AuthState = {
   authorizationStatus: AuthorizationStatus.Unknown,
   loading: false,
   status: StateStatus.idle,
+  userInfo: null,
+  redirectTo: AppRoute.Login
 };
 
-export const authReducer: Reducer = createReducer(initialState, (builder) =>
+export const authReducer: Reducer<typeof initialState> = createReducer(initialState, (builder) =>
   builder
     .addCase(requireAuthorization, (state, {payload}) => {
       return ({
@@ -61,6 +66,10 @@ export const authReducer: Reducer = createReducer(initialState, (builder) =>
       ...state,
       authorizationStatus: AuthorizationStatus.NoAuth,
     }))
+    .addCase(setUserInfoAction, (state, {payload}) => ({
+      ...state,
+      userInfo: payload.userInfo
+    }))
 );
 
 type WithAuthState = {
@@ -73,4 +82,9 @@ export const authStateSelector = (
 export const getAuthorizationStatusSelector = createSelector(
   authStateSelector,
   (state) => state.authorizationStatus
+);
+
+export const getUserInfoSelector = createSelector(
+  authStateSelector,
+  (state) => state.userInfo
 );

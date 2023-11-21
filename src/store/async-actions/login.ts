@@ -3,20 +3,23 @@ import { APIRoute, AppRoute, AuthorizationStatus } from '../../const/settings.ts
 import { dropToken, saveToken } from '../../services';
 import { AppDispatch, Auth, RootState, UserAuthData } from '../../types';
 import { AxiosInstance } from 'axios';
-import { redirectToRoute, requireAuthorization } from '../actions';
+import { redirectToRoute, requireAuthorization, setUserInfoAction } from '../actions/auth.ts';
+import browserHistory from '../../browser-history.ts';
 
 export const checkAuthAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
   state: RootState;
-  extra: { api: AxiosInstance };
+  extra: AxiosInstance;
 }>(
   'USER/CHECK_AUTH',
-  async (_, {dispatch, extra}) => {
+  async (_, {dispatch, extra: api}) => {
     try {
-      await extra.api.get(`/six-cities${APIRoute.Login}`);
+      const {data} = await api.get<UserAuthData>(`/six-cities${APIRoute.Login}`);
       dispatch(requireAuthorization({authorizationStatus: AuthorizationStatus.Auth}));
+      dispatch(setUserInfoAction({userInfo: data}));
     } catch {
       dispatch(requireAuthorization({authorizationStatus: AuthorizationStatus.NoAuth}));
+      dispatch(setUserInfoAction({userInfo: null}));
     }
   }
 );
@@ -32,6 +35,7 @@ export const loginAction = createAsyncThunk<void, Auth, {
     saveToken(token);
     dispatch(requireAuthorization({authorizationStatus: AuthorizationStatus.Auth}));
     dispatch(redirectToRoute({appRoute: AppRoute.Main}));
+    browserHistory.push(AppRoute.Main);
   },
 );
 

@@ -1,10 +1,10 @@
-export const AppRoute = {
-  Login: '/login',
-  Main: '/',
-  Favorites: '/favorites',
-  Offer: '/offers/:id',
-  Page404: '/page404',
-};
+export enum AppRoute {
+  Login= '/login',
+  Main = '/',
+  Favorites = '/favorites',
+  Offer = '/offers/:id',
+  Page404 = '/page404',
+}
 
 export enum AuthorizationStatus {
   Auth = 'AUTH',

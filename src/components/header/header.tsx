@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const/settings.ts';
 import { useAppDispatch } from '../../hooks/use-dispatch.ts';
 import { useSelector } from 'react-redux';
-import { getAuthorizationStatusSelector } from '../../store/reducers/auth.ts';
+import { getAuthorizationStatusSelector, getUserInfoSelector } from '../../store/reducers/auth.ts';
 import { logoutAction } from '../../store/async-actions/login.ts';
 
 export const Header: React.FC = () => {
@@ -11,8 +11,8 @@ export const Header: React.FC = () => {
   const location = useLocation().pathname;
   const authStatus = useSelector(getAuthorizationStatusSelector);
   const loggedUser = (authStatus === AuthorizationStatus.Auth);
-  const isLoginPage = (location === AppRoute.Login);
-
+  const isLoginPage = (location === String(AppRoute.Login));
+  const userInfo = useSelector(getUserInfoSelector);
   const handleLogoutClick = () => {
     dispatch(logoutAction());
   };
@@ -34,7 +34,7 @@ export const Header: React.FC = () => {
                       <Link to={AppRoute.Favorites} className="header__nav-link header__nav-link--profile">
                         <div className="header__avatar-wrapper user__avatar-wrapper">
                         </div>
-                        <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                        <span className="header__user-name user__name">{userInfo ? userInfo.email : ''}</span>
                         <span className="header__favorite-count">3</span>
                       </Link>
                     </li>
