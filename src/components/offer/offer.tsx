@@ -1,15 +1,14 @@
 import React from 'react';
-import { ReviewsList } from '../reviewsList';
-import { Map } from '../map';
-import { OfferType, Location } from '../../types';
+import { ReviewsList } from '../reviews-list';
+import { OfferType } from '../../types';
 
 type OfferProps = {
   offer: OfferType;
-  points: OfferType[];
-  city: Location;
+  // points: OfferType[];
+  // city: Location;
 }
-export const Offer: React.FC<OfferProps> = ({offer, points, city}) => (
-  <section className="offer">
+export const Offer: React.FC<OfferProps> = ({offer}) => (
+  <>
     <div className="offer__gallery-container container">
       <div className="offer__gallery">
         {offer.images.map((image) => (
@@ -92,11 +91,8 @@ export const Offer: React.FC<OfferProps> = ({offer, points, city}) => (
             </p>
           </div>
         </div>
-        <ReviewsList />
+        <ReviewsList/>
       </div>
     </div>
-    <section className="offer__map map">
-      <Map city={city} points={points} />
-    </section>
-  </section>
+  </>
 );

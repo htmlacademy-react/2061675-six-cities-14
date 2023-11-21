@@ -2,8 +2,8 @@ import React from 'react';
 import { Header } from '../../components/header';
 import { Footer } from '../../components/footer';
 import { MockOffers } from '../../mocks';
-import { FavoriteEmpty } from '../../components/favoriteEmpty';
-import { OffersList } from '../../components/offersList';
+import { FavoriteEmpty } from '../../components/favorite-empty';
+import { OffersList } from '../../components/offers-list';
 
 export const Favorites: React.FC = () => (
   <div className="page">

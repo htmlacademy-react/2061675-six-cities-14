@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from 'react';
-import { Location, OfferType } from '../../types/';
+import { City, OfferType } from '../../types/';
 import { Icon, layerGroup, Marker } from 'leaflet';
-import { URL_MARKER_ACTIVE, URL_MARKER_DEFAULT } from '../../const/urlMarkers.ts';
-import useMap from '../../hooks/useMap.ts';
+import { URL_MARKER_ACTIVE, URL_MARKER_DEFAULT } from '../../const/url-markers.ts';
+import useMap from '../../hooks/use-map.ts';
 
 type MapProps = {
-  city: Location;
+  city: City;
   points: OfferType[];
   selectedPoint?: OfferType['id'] | null;
 };
@@ -36,12 +36,13 @@ export const Map: React.FC<MapProps> = ({city, points, selectedPoint}) => {
 
         marker.setIcon(selectedPoint !== null && point.id === selectedPoint ? currentCustomIcon : defaultCustomIcon).addTo(markerLayer);
       });
+      map.setView([city.location.latitude, city.location.longitude], 8);
 
       return () => {
         map.removeLayer(markerLayer);
       };
     }
-  }, [map, points, selectedPoint]);
+  }, [map, points, selectedPoint, city]);
 
   return (
     <div

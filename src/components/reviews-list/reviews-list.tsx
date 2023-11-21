@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReviewsForm } from '../reviewsForm';
+import { ReviewsForm } from '../reviews-form';
 import { MockReviews } from '../../mocks';
 import { Review } from '../review';
 
