@@ -1,5 +1,5 @@
 import React, { FormEvent, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const/settings.ts';
 import { useAppDispatch } from '../../hooks/use-dispatch.ts';
 import { loginAction } from '../../store/async-actions/login.ts';
@@ -9,17 +9,19 @@ export const Login: React.FC = () => {
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    if (emailRef.current !== null && passwordRef.current !== null) {
-      dispatch(loginAction({
-        email: emailRef.current.value,
-        password: passwordRef.current.value
-      }));
+    if (!emailRef.current || !passwordRef.current) {
+      return false;
     }
+
+    const emailValue = emailRef.current?.value;
+    const passwordValue = passwordRef.current?.value;
+
+    dispatch(loginAction({email: emailValue, password: passwordValue}));
   };
   return (
     <div className="page page--gray page--login">
@@ -69,7 +71,7 @@ export const Login: React.FC = () => {
               <button
                 className="login__submit form__submit button"
                 type="submit"
-                onClick={() => navigate(AppRoute.Main)}
+                // onClick={() => navigate(AppRoute.Main)}
               >Sign in
               </button>
             </form>

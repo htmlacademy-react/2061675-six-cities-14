@@ -8,12 +8,12 @@ import { redirectToRoute, requireAuthorization } from '../actions';
 export const checkAuthAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
   state: RootState;
-  extra: AxiosInstance;
+  extra: { api: AxiosInstance };
 }>(
   'USER/CHECK_AUTH',
-  async (_, {dispatch, extra: api}) => {
+  async (_, {dispatch, extra}) => {
     try {
-      await api.get(APIRoute.Login);
+      await extra.api.get(`/six-cities${APIRoute.Login}`);
       dispatch(requireAuthorization({authorizationStatus: AuthorizationStatus.Auth}));
     } catch {
       dispatch(requireAuthorization({authorizationStatus: AuthorizationStatus.NoAuth}));
@@ -28,7 +28,7 @@ export const loginAction = createAsyncThunk<void, Auth, {
 }>(
   'USER/LOGIN',
   async ({email, password}, {dispatch, extra: api}) => {
-    const {data: {token}} = await api.post<UserAuthData>(APIRoute.Login, {email, password});
+    const {data: {token}} = await api.post<UserAuthData>(`/six-cities${APIRoute.Login}`, {email, password});
     saveToken(token);
     dispatch(requireAuthorization({authorizationStatus: AuthorizationStatus.Auth}));
     dispatch(redirectToRoute({appRoute: AppRoute.Main}));
@@ -42,7 +42,7 @@ export const logoutAction = createAsyncThunk<void, undefined, {
 }>(
   'USER/LOGOUT',
   async (_arg, {dispatch, extra: api}) => {
-    await api.delete(APIRoute.Logout);
+    await api.delete(`/six-cities${APIRoute.Logout}`);
     dropToken();
     dispatch(requireAuthorization({authorizationStatus: AuthorizationStatus.NoAuth}));
   },

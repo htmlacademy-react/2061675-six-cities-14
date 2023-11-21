@@ -1,6 +1,7 @@
 import { AuthorizationStatus } from '../../const/settings.ts';
 import { StateStatus } from '../../const/state-status.ts';
 import { createReducer, createSelector, Reducer } from '@reduxjs/toolkit';
+import { requireAuthorization } from '../actions/auth.ts';
 import { checkAuthAction, loginAction, logoutAction } from '../async-actions/login.ts';
 
 interface AuthState {
@@ -15,8 +16,14 @@ const initialState: AuthState = {
   status: StateStatus.idle,
 };
 
-export const authReducer: Reducer<typeof initialState> = createReducer(initialState, (builder) =>
+export const authReducer: Reducer = createReducer(initialState, (builder) =>
   builder
+    .addCase(requireAuthorization, (state, {payload}) => {
+      return ({
+        ...state,
+        authorizationStatus: payload.authorizationStatus
+      });
+    })
     .addCase(checkAuthAction.pending, (state) => {
       state.loading = true;
       state.status = StateStatus.loading;

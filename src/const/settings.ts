@@ -3,6 +3,7 @@ export const AppRoute = {
   Main: '/',
   Favorites: '/favorites',
   Offer: '/offers/:id',
+  Page404: '/page404',
 };
 
 export enum AuthorizationStatus {

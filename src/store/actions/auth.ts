@@ -6,5 +6,5 @@ export const requireAuthorization = createAction<{
 }>('USER/REQUIRE_AUTHORIZATION');
 
 export const redirectToRoute = createAction<{
-  appRoute: AppRoute;
+  appRoute: typeof AppRoute;
 }>('CITIES/REDIRECT_TO_ROUTE');
