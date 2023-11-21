@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppDispatch } from '../../hooks';
 import { useSelector } from 'react-redux';
@@ -8,11 +8,12 @@ import { logoutAction } from '../../store/async-actions';
 
 export const Header: React.FC = () => {
   const dispatch = useAppDispatch();
-  const location = useLocation().pathname;
+  // const location = useLocation().pathname;
   const authStatus = useSelector(getAuthorizationStatusSelector);
   const loggedUser = (authStatus === AuthorizationStatus.Auth);
-  const isLoginPage = (location === String(AppRoute.Login));
+  // const isLoginPage = (location === String(AppRoute.Login));
   const userInfo = useSelector(getUserInfoSelector);
+  console.log(userInfo);
   const handleLogoutClick = () => {
     dispatch(logoutAction());
   };
@@ -28,7 +29,7 @@ export const Header: React.FC = () => {
           <nav className="header__nav">
             <ul className="header__nav-list">
               {
-                loggedUser && (
+                loggedUser ? (
                   <>
                     <li className="header__nav-item user">
                       <Link to={AppRoute.Favorites} className="header__nav-link header__nav-link--profile">
@@ -44,10 +45,7 @@ export const Header: React.FC = () => {
                       </Link>
                     </li>
                   </>
-                )
-              }
-              {
-                (!loggedUser && !isLoginPage) && (
+                ) : (
                   <li className="header__nav-item user">
                     <Link className="header__nav-link header__nav-link--profile" to={AppRoute.Login}>
                       <div className="header__avatar-wrapper user__avatar-wrapper">

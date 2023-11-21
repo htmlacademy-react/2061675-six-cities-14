@@ -30,9 +30,10 @@ export const loginAction = createAsyncThunk<void, Auth, {
 }>(
   'USER/LOGIN',
   async ({email, password}, {dispatch, extra: api}) => {
-    const {data: {token}} = await api.post<UserAuthData>(`/six-cities${APIRoute.Login}`, {email, password});
-    saveToken(token);
+    const {data} = await api.post<UserAuthData>(`/six-cities${APIRoute.Login}`, {email, password});
+    saveToken(data.token);
     dispatch(requireAuthorization({authorizationStatus: AuthorizationStatus.Auth}));
+    dispatch(setUserInfoAction({userInfo: data}));
     dispatch(redirectToRoute({appRoute: AppRoute.Main}));
   },
 );
