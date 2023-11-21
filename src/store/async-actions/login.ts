@@ -4,7 +4,6 @@ import { dropToken, saveToken } from '../../services';
 import { AppDispatch, Auth, RootState, UserAuthData } from '../../types';
 import { AxiosInstance } from 'axios';
 import { redirectToRoute, requireAuthorization, setUserInfoAction } from '../actions';
-import browserHistory from '../../browser-history.ts';
 
 export const checkAuthAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
@@ -35,7 +34,6 @@ export const loginAction = createAsyncThunk<void, Auth, {
     saveToken(token);
     dispatch(requireAuthorization({authorizationStatus: AuthorizationStatus.Auth}));
     dispatch(redirectToRoute({appRoute: AppRoute.Main}));
-    browserHistory.push(AppRoute.Main);
   },
 );
 
