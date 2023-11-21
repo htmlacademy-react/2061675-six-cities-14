@@ -1,8 +1,8 @@
 import React, { FormEvent, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const/settings.ts';
-import { useAppDispatch } from '../../hooks/use-dispatch.ts';
-import { loginAction } from '../../store/async-actions/login.ts';
+import { AppRoute } from '../../const';
+import { useAppDispatch } from '../../hooks';
+import { loginAction } from '../../store/async-actions';
 
 export const Login: React.FC = () => {
   const emailRef = useRef<HTMLInputElement | null>(null);

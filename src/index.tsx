@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import { Provider } from 'react-redux';
 import { store } from './store';
-import { checkAuthAction } from './store/async-actions/login.ts';
+import { checkAuthAction } from './store/async-actions';
 
 store.dispatch(checkAuthAction());
 const root = ReactDOM.createRoot(

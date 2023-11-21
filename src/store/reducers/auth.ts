@@ -1,8 +1,8 @@
-import { AppRoute, AuthorizationStatus } from '../../const/settings.ts';
-import { StateStatus } from '../../const/state-status.ts';
+import { AppRoute, AuthorizationStatus } from '../../const';
+import { StateStatus } from '../../const';
 import { createReducer, createSelector, Reducer } from '@reduxjs/toolkit';
-import { requireAuthorization, setUserInfoAction } from '../actions/auth.ts';
-import { checkAuthAction, loginAction, logoutAction } from '../async-actions/login.ts';
+import { requireAuthorization, setUserInfoAction } from '../actions';
+import { checkAuthAction, loginAction, logoutAction } from '../async-actions';
 import { UserAuthData } from '../../types';
 
 interface AuthState {

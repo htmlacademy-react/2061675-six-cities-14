@@ -1,4 +1,4 @@
-import { LoadingSlot } from '../const/loading-slot.ts';
+import { LoadingSlot } from '../const';
 import { useSelector } from 'react-redux';
 import { loadingStateSelector } from '../store/reducers';
 

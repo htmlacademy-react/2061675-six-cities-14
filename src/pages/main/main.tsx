@@ -5,10 +5,10 @@ import { Empty } from '../../components/empty';
 import { OffersList } from '../../components/offers-list';
 import { OfferType } from '../../types';
 import { Map } from '../../components/map';
-import { useAppDispatch } from '../../hooks/use-dispatch.ts';
+import { useAppDispatch } from '../../hooks';
 import { useSelector } from 'react-redux';
 import { SortOptions } from '../../components/sort-options';
-import { fetchOffersAction } from '../../store/async-actions/fetch-offers.ts';
+import { fetchOffersAction } from '../../store/async-actions';
 import { Loader } from '../../components/loader';
 import {
   getCitiesSelector,

@@ -1,4 +1,4 @@
-import { AppRoute, AuthorizationStatus } from '../../const/settings.ts';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import { createAction } from '@reduxjs/toolkit';
 import { UserAuthData } from '../../types';
 

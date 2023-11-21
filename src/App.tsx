@@ -1,16 +1,15 @@
 import { Main } from './pages/main';
-import { AppRoute } from './const/settings.ts';
+import { AppRoute, PlacesCount } from './const';
 import { Route, Routes } from 'react-router-dom';
 import { Login } from './pages/login';
 import { OfferPage } from './pages/offer';
 import { Favorites } from './pages/favorites';
 import { PrivateRoute } from './components/private-route';
-import { PlacesCount } from './const/places-count.ts';
 import { Error } from './components/error';
 import { HistoryRoute } from './components/history-route';
 import browserHistory from './browser-history.ts';
 import { useSelector } from 'react-redux';
-import { getAuthorizationStatusSelector } from './store/reducers/auth.ts';
+import { getAuthorizationStatusSelector } from './store/reducers';
 
 
 export default function App() {

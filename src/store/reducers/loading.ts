@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { LoadingSlot } from '../../const/loading-slot.ts';
+import { LoadingSlot } from '../../const';
 import { clearLoadingAction, setLoadingAction } from '../actions';
 
 type LoadingState = {

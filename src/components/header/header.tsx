@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../../const/settings.ts';
-import { useAppDispatch } from '../../hooks/use-dispatch.ts';
+import { AppRoute, AuthorizationStatus } from '../../const';
+import { useAppDispatch } from '../../hooks';
 import { useSelector } from 'react-redux';
-import { getAuthorizationStatusSelector, getUserInfoSelector } from '../../store/reducers/auth.ts';
-import { logoutAction } from '../../store/async-actions/login.ts';
+import { getAuthorizationStatusSelector, getUserInfoSelector } from '../../store/reducers';
+import { logoutAction } from '../../store/async-actions';
 
 export const Header: React.FC = () => {
   const dispatch = useAppDispatch();

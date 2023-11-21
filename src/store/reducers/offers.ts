@@ -1,8 +1,7 @@
 import { OfferType, SelectedOffer } from '../../types';
-import { StateStatus } from '../../const/state-status.ts';
+import { StateStatus } from '../../const';
 import { createReducer, createSelector } from '@reduxjs/toolkit';
-import { fetchOffersAction } from '../async-actions/fetch-offers.ts';
-import { getSelectedOfferAction } from '../async-actions/get-selected-offer.ts';
+import { fetchOffersAction, getSelectedOfferAction } from '../async-actions';
 
 interface OffersState {
   offers: OfferType[];

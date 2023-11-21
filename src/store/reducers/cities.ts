@@ -1,7 +1,7 @@
 import { City } from '../../types';
-import { StateStatus } from '../../const/state-status.ts';
+import { StateStatus } from '../../const';
 import { createReducer, createSelector } from '@reduxjs/toolkit';
-import { changeCityAction } from '../actions/cities.ts';
+import { changeCityAction } from '../actions';
 
 interface CitiesState {
   city: City | undefined;

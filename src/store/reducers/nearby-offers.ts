@@ -1,7 +1,7 @@
 import { OfferType } from '../../types';
-import { StateStatus } from '../../const/state-status.ts';
+import { StateStatus } from '../../const';
 import { createReducer, createSelector } from '@reduxjs/toolkit';
-import { getNearbyOffers } from '../async-actions/get-nearby-offers.ts';
+import { getNearbyOffers } from '../async-actions';
 
 interface NearbyOffersState {
   nearbyOffers: OfferType[];

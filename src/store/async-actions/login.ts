@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { APIRoute, AppRoute, AuthorizationStatus } from '../../const/settings.ts';
+import { APIRoute, AppRoute, AuthorizationStatus } from '../../const';
 import { dropToken, saveToken } from '../../services';
 import { AppDispatch, Auth, RootState, UserAuthData } from '../../types';
 import { AxiosInstance } from 'axios';
-import { redirectToRoute, requireAuthorization, setUserInfoAction } from '../actions/auth.ts';
+import { redirectToRoute, requireAuthorization, setUserInfoAction } from '../actions';
 import browserHistory from '../../browser-history.ts';
 
 export const checkAuthAction = createAsyncThunk<void, undefined, {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const/settings.ts';
+import { AppRoute } from '../../const';
 
 type LocationProps = {
   locationName: string;
