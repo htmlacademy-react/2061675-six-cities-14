@@ -13,7 +13,6 @@ export const Header: React.FC = () => {
   const loggedUser = (authStatus === AuthorizationStatus.Auth);
   // const isLoginPage = (location === String(AppRoute.Login));
   const userInfo = useSelector(getUserInfoSelector);
-  console.log(userInfo);
   const handleLogoutClick = () => {
     dispatch(logoutAction());
   };

@@ -23,12 +23,10 @@ const initialState: AuthState = {
 
 export const authReducer: Reducer<typeof initialState> = createReducer(initialState, (builder) =>
   builder
-    .addCase(requireAuthorization, (state, {payload}) => {
-      return ({
-        ...state,
-        authorizationStatus: payload.authorizationStatus
-      });
-    })
+    .addCase(requireAuthorization, (state, {payload}) => ({
+      ...state,
+      authorizationStatus: payload.authorizationStatus
+    }))
     .addCase(checkAuthAction.pending, (state) => {
       state.loading = true;
       state.status = StateStatus.loading;
