@@ -4,3 +4,4 @@ export * from './cities.ts';
 export * from './auth.ts';
 export * from './nearby-offers.ts';
 export * from './root-reducer.ts';
+export * from './comments.ts';
