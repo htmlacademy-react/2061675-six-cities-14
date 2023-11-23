@@ -59,3 +59,9 @@ export const getCommentsSelector = createSelector(
   (state) => state.comments
 );
 
+export const getCommentsLoadingSelector = createSelector(
+  commentsStateSelector,
+  (state) => state.loading
+);
+
+
