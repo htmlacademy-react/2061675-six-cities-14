@@ -7,12 +7,14 @@ interface FavoriteOffersState {
   favoriteOffers: SelectedOffer[];
   status: StateStatus;
   loading: boolean;
+  favoriteStatus: number;
 }
 
 const initialState: FavoriteOffersState = {
   favoriteOffers: [],
   loading: false,
-  status: StateStatus.idle
+  status: StateStatus.idle,
+  favoriteStatus: 0,
 };
 
 export const favoritesOffersReducer = createReducer(initialState, (builder) =>
