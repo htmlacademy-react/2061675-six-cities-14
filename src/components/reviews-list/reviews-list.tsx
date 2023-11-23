@@ -25,7 +25,9 @@ export const ReviewsList: React.FC = () => {
           <Review review={review} key={review.id}/>
         ))}
       </ul>
-      <ReviewsForm/>
+      {
+        id && <ReviewsForm offerId={id}/>
+      }
     </section>
   );
 };

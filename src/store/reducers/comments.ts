@@ -2,6 +2,7 @@ import { Review } from '../../types';
 import { StateStatus } from '../../const';
 import { createReducer, createSelector } from '@reduxjs/toolkit';
 import { fetchCommentsAction } from '../async-actions';
+import { addCommentAction } from '../actions';
 
 interface CommentsState {
   comments: Review[];
@@ -39,6 +40,9 @@ export const commentsReducer = createReducer(initialState, (builder) =>
         ...state,
         status: StateStatus.idle,
       };
+    })
+    .addCase(addCommentAction, (state, {payload}) => {
+      state.comments.push(payload.comments);
     })
 );
 
