@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { OfferType } from '../../types/';
 import { Link } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks';
+import { postFavoriteOfferAction } from '../../store/async-actions';
 
 export type CardProps = {
   offer: OfferType;
@@ -21,6 +23,9 @@ export const Card: React.FC<CardProps> = ({
   imgHeight,
   imgWidth
 }) => {
+  const dispatch = useAppDispatch();
+  const [isBookmarkButtonActive, setBookmarkButtonActive] = useState(offer.isFavorite);
+
   function handleMouseEnter() {
     onCardHover?.(offer.id);
   }
@@ -28,6 +33,11 @@ export const Card: React.FC<CardProps> = ({
   function handleMouseLeave() {
     onCardHover?.(null);
   }
+
+  const handleBookmarkButtonClick = () => {
+    dispatch(postFavoriteOfferAction({offerId: offer.id, status: Number(!isBookmarkButtonActive)}));
+    setBookmarkButtonActive((prev) => !prev);
+  };
 
   return (
     <article className={`${className} place-card`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
@@ -40,7 +50,9 @@ export const Card: React.FC<CardProps> = ({
       ) : ''}
       <div className={`${classNameWrapper} place-card__image-wrapper`}>
         <a href="#">
-          <img className="place-card__image" src={offer.previewImage} width={imgWidth} height={imgHeight} alt="Place image"/>
+          <img className="place-card__image" src={offer.previewImage} width={imgWidth} height={imgHeight}
+            alt="Place image"
+          />
         </a>
       </div>
       <div className={`${classNameInfo} place-card__info`}>
@@ -50,8 +62,9 @@ export const Card: React.FC<CardProps> = ({
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button
-            className={offer.isFavorite ? 'place-card__bookmark-button button place-card__bookmark-button--active' : 'place-card__bookmark-button button'}
+            className={isBookmarkButtonActive ? 'place-card__bookmark-button button place-card__bookmark-button--active' : 'place-card__bookmark-button button'}
             type="button"
+            onClick={handleBookmarkButtonClick}
           >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>

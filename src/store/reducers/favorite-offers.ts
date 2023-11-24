@@ -1,20 +1,18 @@
 import { SelectedOffer } from '../../types';
 import { StateStatus } from '../../const';
 import { createReducer, createSelector } from '@reduxjs/toolkit';
-import { fetchFavoriteOffersAction } from '../async-actions';
+import { fetchFavoriteOffersAction, postFavoriteOfferAction } from '../async-actions';
 
 interface FavoriteOffersState {
   favoriteOffers: SelectedOffer[];
   status: StateStatus;
   loading: boolean;
-  favoriteStatus: number;
 }
 
 const initialState: FavoriteOffersState = {
   favoriteOffers: [],
   loading: false,
   status: StateStatus.idle,
-  favoriteStatus: 0,
 };
 
 export const favoritesOffersReducer = createReducer(initialState, (builder) =>
@@ -41,6 +39,17 @@ export const favoritesOffersReducer = createReducer(initialState, (builder) =>
         ...state,
         status: StateStatus.idle,
       };
+    })
+    .addCase(postFavoriteOfferAction.fulfilled, (state, {payload}) => {
+      const isFavorite = payload.isFavorite;
+
+      if (isFavorite) {
+        state.favoriteOffers.push(payload);
+      }
+
+      if (!isFavorite) {
+        state.favoriteOffers = state.favoriteOffers.filter((offer) => offer.id !== payload.id);
+      }
     })
 );
 
