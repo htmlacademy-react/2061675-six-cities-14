@@ -19,7 +19,7 @@ export const Review: React.FC<ReviewProps> = ({review}) => (
     <div className="reviews__info">
       <div className="reviews__rating rating">
         <div className="reviews__stars rating__stars">
-          <span style={{'width': review.rating}}></span>
+          <span style={{'width': (review.rating * 100) / 5}}></span>
           <span className="visually-hidden">Rating</span>
         </div>
       </div>
