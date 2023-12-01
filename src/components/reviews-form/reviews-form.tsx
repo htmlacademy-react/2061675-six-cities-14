@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Stars } from '../../const/stars.ts';
+import { Stars } from '../../const';
 
 export const ReviewsForm: React.FC = () => {
   const [formData, setFormData] = useState({

@@ -1,14 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { citiesReducer } from './reducer.ts';
-import { loadingReducer } from './loading-reducer.ts';
+import { rootReducer } from './reducers';
+import { createAPI } from '../services';
+import { redirect } from './middlewares';
+
+const api = createAPI();
 
 export const store = configureStore({
-  reducer: {
-    cities: citiesReducer,
-    loading: loadingReducer,
-  },
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: false,
-    }),
+      thunk: {
+        extraArgument: api
+      }
+    }).concat(redirect),
 });

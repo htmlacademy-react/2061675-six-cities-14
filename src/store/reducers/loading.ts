@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { LoadingSlot } from '../const/loading-slot.ts';
-import { clearLoadingAction, setLoadingAction } from './loading-action.ts';
+import { LoadingSlot } from '../../const';
+import { clearLoadingAction, setLoadingAction } from '../actions';
 
 type LoadingState = {
   [slot in keyof Partial<typeof LoadingSlot>]: boolean;

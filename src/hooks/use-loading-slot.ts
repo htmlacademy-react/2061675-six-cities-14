@@ -1,6 +1,6 @@
-import { LoadingSlot } from '../const/loading-slot.ts';
+import { LoadingSlot } from '../const';
 import { useSelector } from 'react-redux';
-import { loadingStateSelector } from '../store/loading-reducer.ts';
+import { loadingStateSelector } from '../store/reducers';
 
 export function useLoadingSlot(slot: LoadingSlot): boolean {
   const state = useSelector(loadingStateSelector);

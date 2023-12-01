@@ -6,3 +6,5 @@ export * from './user.ts';
 export * from './review.ts';
 export * from './state.ts';
 export * from './selected-offer.ts';
+export * from './auth.ts';
+export * from './user-auth-data.ts';

@@ -1,5 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
-import { LoadingSlot } from '../const/loading-slot.ts';
+import { LoadingSlot } from '../../const';
 
 
 export const clearLoadingAction = createAction('LOADING/CLEAR');

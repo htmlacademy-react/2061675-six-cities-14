@@ -5,14 +5,18 @@ import { Empty } from '../../components/empty';
 import { OffersList } from '../../components/offers-list';
 import { OfferType } from '../../types';
 import { Map } from '../../components/map';
-import { useAppDispatch } from '../../hooks/use-dispatch.ts';
-import { changeCityAction } from '../../store/action.ts';
-import { useAppSelector } from '../../hooks/use-typed-selector.ts';
+import { useAppDispatch } from '../../hooks';
 import { useSelector } from 'react-redux';
-import { getCitiesSelector, getLoadingSelector, getSelectedCitySelector } from '../../store/reducer.ts';
 import { SortOptions } from '../../components/sort-options';
-import { fetchOffers } from '../../store/async-actions/fetch-offers.ts';
+import { fetchOffersAction } from '../../store/async-actions';
 import { Loader } from '../../components/loader';
+import {
+  getCitiesSelector,
+  getLoadingSelector,
+  getOffersSelector,
+  getSelectedCitySelector
+} from '../../store/reducers';
+import { changeCityAction } from '../../store/actions';
 
 type MainProps = {
   placesCount: number;
@@ -24,7 +28,7 @@ export const Main: React.FC<MainProps> = ({placesCount}) => {
   const dispatch = useAppDispatch();
   const citiesSet = useSelector(getCitiesSelector);
   const selectedCity = useSelector(getSelectedCitySelector);
-  const offers = useAppSelector((state) => state.cities.offers);
+  const offers = useSelector(getOffersSelector);
   let city = citiesSet.find((c) => c.name === selectedCity?.name);
   const isLoading = useSelector(getLoadingSelector);
 
@@ -49,7 +53,7 @@ export const Main: React.FC<MainProps> = ({placesCount}) => {
         }
       }));
     }
-    dispatch(fetchOffers());
+    dispatch(fetchOffersAction());
   }, []);
 
   return (
