@@ -8,7 +8,7 @@ import { Map } from '../../components/map';
 import { useAppDispatch } from '../../hooks';
 import { useSelector } from 'react-redux';
 import { SortOptions } from '../../components/sort-options';
-import { fetchOffersAction } from '../../store/async-actions';
+import { fetchFavoriteOffersAction, fetchOffersAction } from '../../store/async-actions';
 import { Loader } from '../../components/loader';
 import {
   getCitiesSelector,
@@ -54,6 +54,7 @@ export const Main: React.FC<MainProps> = ({placesCount}) => {
       }));
     }
     dispatch(fetchOffersAction());
+    dispatch(fetchFavoriteOffersAction());
   }, []);
 
   return (
