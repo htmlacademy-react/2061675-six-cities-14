@@ -17,9 +17,10 @@ import {
   getSelectedCitySelector
 } from '../../store/reducers';
 import { changeCityAction } from '../../store/actions';
+import { SortItems } from '../../const';
 
 export const Main: React.FC = () => {
-  const [sortOption, setSortOption] = useState('Popular');
+  const [sortOption, setSortOption] = useState<string>(SortItems.Popular);
   const [selectedPoint, setSelectedPoint] = useState<OfferType['id'] | null>(null);
 
   const dispatch = useAppDispatch();
@@ -38,8 +39,8 @@ export const Main: React.FC = () => {
     setSelectedPoint(offerId);
   };
 
-  const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSortOption(event.target.value);
+  const handleSortChange = (option: string) => {
+    setSortOption(option);
   };
   useEffect(() => {
     if (!selectedCity) {
@@ -52,7 +53,6 @@ export const Main: React.FC = () => {
     }
     dispatch(fetchOffersAction());
   }, []);
-
   return (
     <div className="page page--gray page--main">
       <Header/>
