@@ -6,7 +6,7 @@ import { Offer } from '../../components/offer';
 import { Map } from '../../components/map';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../../hooks';
-import { getSelectedOfferAction, getNearbyOffers } from '../../store/async-actions';
+import { getSelectedOfferAction, getNearbyOffers, fetchFavoriteOffersAction } from '../../store/async-actions';
 import { Loader } from '../../components/loader';
 import { getLoadingSelector, getSelectedOfferSelector, getNearbyOffersSelector } from '../../store/reducers';
 import { Card } from '../../components/card';
@@ -32,6 +32,7 @@ export const OfferPage: React.FC = () => {
       dispatch(getSelectedOfferAction(id));
       dispatch(getNearbyOffers({offerId: id}));
     }
+    dispatch(fetchFavoriteOffersAction());
   }, []);
   if (!id) {
     return <div>invalid id</div>;
