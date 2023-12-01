@@ -18,10 +18,7 @@ import {
 } from '../../store/reducers';
 import { changeCityAction } from '../../store/actions';
 
-type MainProps = {
-  placesCount: number;
-}
-export const Main: React.FC<MainProps> = ({placesCount}) => {
+export const Main: React.FC = () => {
   const [sortOption, setSortOption] = useState('Popular');
   const [selectedPoint, setSelectedPoint] = useState<OfferType['id'] | null>(null);
 
@@ -88,7 +85,7 @@ export const Main: React.FC<MainProps> = ({placesCount}) => {
                   <div className="cities__places-container container">
                     <section className="cities__places places">
                       <h2 className="visually-hidden">Places</h2>
-                      <b className="places__found">{placesCount} places to stay in Amsterdam</b>
+                      <b className="places__found">{offersInSelectedCity.length} places to stay in Amsterdam</b>
                       <SortOptions selectedSortOption={sortOption} onSortChange={handleSortChange}/>
                       <div className="cities__places-list places__list tabs__content">
                         <OffersList

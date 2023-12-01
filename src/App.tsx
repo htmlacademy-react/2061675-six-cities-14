@@ -1,5 +1,5 @@
 import { Main } from './pages/main';
-import { AppRoute, PlacesCount } from './const';
+import { AppRoute } from './const';
 import { Route, Routes } from 'react-router-dom';
 import { Login } from './pages/login';
 import { OfferPage } from './pages/offer';
@@ -17,7 +17,7 @@ export default function App() {
   return (
     <HistoryRoute history={browserHistory}>
       <Routes>
-        <Route path={AppRoute.Main} element={<Main placesCount={PlacesCount.count} />}/>
+        <Route path={AppRoute.Main} element={<Main />}/>
         <Route path={AppRoute.Login} element={<Login/>}/>
         <Route path={AppRoute.Offer} element={<OfferPage />}/>
         <Route path={AppRoute.Favorites} element={<PrivateRoute authorizationStatus={authorizationStatus}><Favorites/></PrivateRoute>}></Route>
