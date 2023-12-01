@@ -36,7 +36,7 @@ export const Map: React.FC<MapProps> = ({city, points, selectedPoint}) => {
 
         marker.setIcon(selectedPoint !== null && point.id === selectedPoint ? currentCustomIcon : defaultCustomIcon).addTo(markerLayer);
       });
-      map.setView([city.location.latitude, city.location.longitude], 8);
+      map.setView([city.location.latitude, city.location.longitude], city.location.zoom);
 
       return () => {
         map.removeLayer(markerLayer);

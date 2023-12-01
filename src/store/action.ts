@@ -3,7 +3,7 @@ import { City, OfferType } from '../types';
 import { AuthorizationStatus } from '../const/settings.ts';
 
 export const changeCityAction = createAction<{
-  city: City;
+  city: City | undefined;
 }>('CITIES/CHANGE_CITY');
 
 export const fillOffersAction = createAction<{

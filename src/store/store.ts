@@ -1,16 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { citiesReducer } from './reducer.ts';
-import { createAPI } from '../services';
+import { loadingReducer } from './loading-reducer.ts';
 
-export const api = createAPI();
 export const store = configureStore({
   reducer: {
     cities: citiesReducer,
+    loading: loadingReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      thunk: {
-        extraArgument: api,
-      },
+      serializableCheck: false,
     }),
 });

@@ -1,9 +1,9 @@
 import React from 'react';
 import { ReviewsList } from '../reviews-list';
-import { OfferType } from '../../types';
+import { SelectedOffer } from '../../types';
 
 type OfferProps = {
-  offer: OfferType;
+  offer: SelectedOffer;
   // points: OfferType[];
   // city: Location;
 }
