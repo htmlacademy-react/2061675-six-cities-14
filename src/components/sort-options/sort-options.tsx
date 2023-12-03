@@ -8,13 +8,13 @@ type SortOptionsProps = {
 
 export const SortOptions: React.FC<SortOptionsProps> = ({onSortChange, selectedSortOption}) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [selectedOption, setSelectedOption] = useState<string>(SortItems.Popular);
+  const [selectedOption, setSelectedOption] = useState<SortItems>(SortItems.Popular);
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
   };
 
-  const updateSorting = (option: string) => {
+  const updateSorting = (option: SortItems) => {
     setSelectedOption(option);
     onSortChange(option);
     handleToggle();
