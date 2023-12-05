@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { JSX } from 'react';
 import { createMemoryHistory, MemoryHistory } from 'history';
 import { HistoryRoute } from '../components/history-route';
 import { configureMockStore, MockStore } from '@jedmao/redux-mock-store';
-import * as MockAdapter from 'axios-mock-adapter';
+import MockAdapter from 'axios-mock-adapter';
 import thunk from 'redux-thunk';
 import { createAPI } from '../services';
 import { RootState } from '../types';

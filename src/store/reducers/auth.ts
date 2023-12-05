@@ -5,7 +5,7 @@ import { checkAuthAction, loginAction, logoutAction } from '../async-actions';
 import { UserAuthData } from '../../types';
 import { getToken } from '../../services';
 
-interface AuthState {
+export interface AuthState {
   authorizationStatus: AuthorizationStatus;
   status: StateStatus;
   loading: boolean;
@@ -13,7 +13,7 @@ interface AuthState {
   redirectTo: AppRoute;
 }
 
-const initialState: AuthState = {
+export const authInitialState: AuthState = {
   authorizationStatus: AuthorizationStatus.Unknown,
   loading: false,
   status: StateStatus.idle,
@@ -21,7 +21,7 @@ const initialState: AuthState = {
   redirectTo: AppRoute.Login
 };
 
-export const authReducer: Reducer<typeof initialState> = createReducer(initialState, (builder) =>
+export const authReducer: Reducer<typeof authInitialState> = createReducer(authInitialState, (builder) =>
   builder
     // .addCase(requireAuthorization, (state, {payload}) => ({
     //   ...state,

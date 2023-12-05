@@ -1,5 +1,5 @@
 import { AppRoute, AuthorizationStatus, StateStatus } from '../../const';
-import { authReducer } from './auth.ts';
+import { authInitialState, authReducer, AuthState } from './auth.ts';
 import { loginAction } from '../async-actions';
 
 describe('auth reducer', () => {
@@ -19,10 +19,17 @@ describe('auth reducer', () => {
   });
 
   it('should set "Auth" with "loginAction.fulfilled" action', () => {
-    const initialState = {authorizationStatus: AuthorizationStatus.NoAuth};
-    const expectedState = {authorizationStatus: AuthorizationStatus.Auth};
+    const expectedState: AuthState = {
+      ...authInitialState,
+      authorizationStatus: AuthorizationStatus.Auth,
+      status: StateStatus.idle,
+      loading: false
+    };
 
-    const result = authReducer(initialState, loginAction.fulfilled);
+    const result = authReducer(authInitialState, loginAction.fulfilled(undefined, '', {
+      email: 'user@mail.ru',
+      password: 'somepass234'
+    }));
 
     expect(result).toEqual(expectedState);
   });
