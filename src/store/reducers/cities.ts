@@ -3,19 +3,19 @@ import { StateStatus } from '../../const';
 import { createReducer, createSelector } from '@reduxjs/toolkit';
 import { changeCityAction } from '../actions';
 
-interface CitiesState {
+export interface CitiesState {
   city: City | undefined;
   status: StateStatus;
   loading: boolean;
 }
 
-const initialState: CitiesState = {
+export const initialCitiesState: CitiesState = {
   city: undefined,
   loading: false,
   status: StateStatus.idle,
 };
 
-export const citiesReducer = createReducer(initialState, (builder) =>
+export const citiesReducer = createReducer(initialCitiesState, (builder) =>
   builder
     .addCase(changeCityAction, (state, {payload}) => ({
       ...state,
