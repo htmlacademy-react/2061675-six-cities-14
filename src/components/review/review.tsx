@@ -1,5 +1,6 @@
 import React from 'react';
 import { Review as ReviewType } from '../../types';
+import { dateFormat } from '../../utils';
 
 type ReviewProps = {
   review: ReviewType;
@@ -19,14 +20,14 @@ export const Review: React.FC<ReviewProps> = ({review}) => (
     <div className="reviews__info">
       <div className="reviews__rating rating">
         <div className="reviews__stars rating__stars">
-          <span style={{'width': (review.rating * 100) / 5}}></span>
+          <span style={{'width': ((review.rating * 100) / 5) - 2}}></span>
           <span className="visually-hidden">Rating</span>
         </div>
       </div>
       <p className="reviews__text">
         {review.comment}
       </p>
-      <time className="reviews__time" dateTime="2019-04-24">{review.date}</time>
+      <time className="reviews__time" dateTime="2019-04-24">{dateFormat(review.date)}</time>
     </div>
   </li>
 );

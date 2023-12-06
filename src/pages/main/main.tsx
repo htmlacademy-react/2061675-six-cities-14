@@ -57,7 +57,7 @@ export const Main: React.FC = () => {
     <div className="page page--gray page--main">
       <Header/>
       <main
-        className={`page__main page__main--index ${offersInSelectedCity.length === 0 ? 'page__main--index-empty' : ''}`}
+        className={`page__main page__main--index ${offersInSelectedCity.length ? '' : 'page__main--index-empty'}`}
       >
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
@@ -104,8 +104,9 @@ export const Main: React.FC = () => {
                         <Map points={offers} selectedPoint={selectedPoint} city={city}/>
                       </section>
                     </div>
-                  </div> : <Empty city={`${selectedCity?.name}` || ''}/>
-
+                  </div>
+                  :
+                  <Empty city={`${selectedCity?.name}` || ''}/>
               }
             </div>
           )

@@ -44,9 +44,9 @@ export const Header: React.FC = () => {
                       </Link>
                     </li>
                     <li className="header__nav-item">
-                      <Link className="header__nav-link" to={AppRoute.Login}>
+                      <div className="header__nav-link">
                         <span className="header__signout" onClick={handleLogoutClick}>Sign out</span>
-                      </Link>
+                      </div>
                     </li>
                   </>
                 ) : (

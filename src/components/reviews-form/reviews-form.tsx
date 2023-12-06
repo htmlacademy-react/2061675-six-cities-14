@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Stars } from '../../const';
 import { useAppDispatch } from '../../hooks';
 import { postCommentAction } from '../../store/async-actions';
@@ -28,6 +28,14 @@ export const ReviewsForm: React.FC<ReviewsFormProps> = ({offerId}) => {
     event.preventDefault();
     dispatch(postCommentAction({commentData: {comment: formData.review, rating: Number(formData.rating)}, offerId}));
   };
+
+  const isButtonValid = useMemo(
+    () => formData.rating > '0' && formData.review.length >= 50 && formData.review.length <= 300,
+    [formData]);
+  useEffect(() => {
+    formData.review = '';
+    formData.rating = '';
+  }, []);
   return (
     <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
@@ -60,7 +68,13 @@ export const ReviewsForm: React.FC<ReviewsFormProps> = ({offerId}) => {
           To submit review please make sure to set <span className="reviews__star">rating</span> and
           describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit">Submit</button>
+        <button
+          className="reviews__submit form__submit button"
+          type="submit"
+          disabled={!isButtonValid}
+        >
+          Submit
+        </button>
       </div>
     </form>
   );
