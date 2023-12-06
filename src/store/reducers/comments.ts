@@ -4,19 +4,19 @@ import { createReducer, createSelector } from '@reduxjs/toolkit';
 import { fetchCommentsAction } from '../async-actions';
 import { addCommentAction } from '../actions';
 
-interface CommentsState {
+export interface CommentsState {
   comments: Review[];
   status: StateStatus;
   loading: boolean;
 }
 
-const initialState: CommentsState = {
+export const initialCommentState: CommentsState = {
   comments: [],
   loading: false,
   status: StateStatus.idle
 };
 
-export const commentsReducer = createReducer(initialState, (builder) =>
+export const commentsReducer = createReducer(initialCommentState, (builder) =>
   builder
     .addCase(fetchCommentsAction.pending, (state) => ({
       ...state,
@@ -39,6 +39,7 @@ export const commentsReducer = createReducer(initialState, (builder) =>
       return {
         ...state,
         status: StateStatus.idle,
+        loading: false
       };
     })
     .addCase(addCommentAction, (state, {payload}) => {
