@@ -6,6 +6,7 @@ import { datatype, date, image, internet, lorem, name } from 'faker';
 import { AppRoute, AuthorizationStatus, StateStatus } from '../const';
 
 export type AppThunkDispatch = ThunkDispatch<RootState, ReturnType<typeof createAPI>, Action>;
+export const extractActionsTypes = (actions: Action<string>[]) => actions.map(({ type }) => type);
 
 export const makeFakeUserInfo = (): UserAuthData => ({
   avatarUrl: internet.avatar(),

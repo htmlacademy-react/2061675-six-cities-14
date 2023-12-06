@@ -50,7 +50,7 @@ describe('favorites offers reducer', () => {
       favoriteOffers: [mockFavoriteOffers],
     };
 
-    const result = favoritesOffersReducer(initialFavoriteOffersState, postFavoriteOfferAction.fulfilled(mockFavoriteOffers, '', {offerId: '1', status: 1 | 0}));
+    const result = favoritesOffersReducer(initialFavoriteOffersState, postFavoriteOfferAction.fulfilled(mockFavoriteOffers, '', {offerId: '1', status: 1 }));
 
     expect(result).toEqual(expectedState);
   });
