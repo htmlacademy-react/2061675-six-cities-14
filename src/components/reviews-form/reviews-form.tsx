@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 import { Stars } from '../../const';
+import { useAppDispatch } from '../../hooks';
+import { postCommentAction } from '../../store/async-actions';
 
-export const ReviewsForm: React.FC = () => {
+interface ReviewsFormProps {
+  offerId: string;
+}
+
+export const ReviewsForm: React.FC<ReviewsFormProps> = ({offerId}) => {
+  const dispatch = useAppDispatch();
   const [formData, setFormData] = useState({
     rating: '',
     review: ''
@@ -19,6 +26,7 @@ export const ReviewsForm: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+    dispatch(postCommentAction({commentData: {comment: formData.review, rating: Number(formData.rating)}, offerId}));
   };
   return (
     <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}>

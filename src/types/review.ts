@@ -1,7 +1,7 @@
 import { User } from './user.ts';
 
 export type Review = {
-  id: number;
+  id: string;
   user: User;
   rating: number;
   comment: string;
