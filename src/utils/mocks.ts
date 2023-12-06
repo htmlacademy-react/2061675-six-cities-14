@@ -120,7 +120,7 @@ export const makeFakeStore = (initialState?: Partial<RootState>): RootState => (
     status: StateStatus.idle
   },
   nearbyOffers: {
-    nearbyOffers: [makeFakeSelectedOffer()],
+    nearbyOffers: [makeFakeOffer()],
     loading: false,
     status: StateStatus.idle,
   },
