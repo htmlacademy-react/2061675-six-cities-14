@@ -3,19 +3,19 @@ import { StateStatus } from '../../const';
 import { createReducer, createSelector } from '@reduxjs/toolkit';
 import { getNearbyOffers } from '../async-actions';
 
-interface NearbyOffersState {
+export interface NearbyOffersState {
   nearbyOffers: OfferType[];
   status: StateStatus;
   loading: boolean;
 }
 
-const initialState: NearbyOffersState = {
+export const initialNearbyOffersState: NearbyOffersState = {
   nearbyOffers: [],
   loading: false,
   status: StateStatus.idle,
 };
 
-export const nearbyOffersReducer = createReducer(initialState, (builder) =>
+export const nearbyOffersReducer = createReducer(initialNearbyOffersState, (builder) =>
   builder
     .addCase(getNearbyOffers.pending, (state) => ({
       ...state,
@@ -38,6 +38,7 @@ export const nearbyOffersReducer = createReducer(initialState, (builder) =>
       return {
         ...state,
         status: StateStatus.idle,
+        loading: false
       };
     })
 );

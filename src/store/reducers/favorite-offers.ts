@@ -3,19 +3,19 @@ import { StateStatus } from '../../const';
 import { createReducer, createSelector } from '@reduxjs/toolkit';
 import { fetchFavoriteOffersAction, postFavoriteOfferAction } from '../async-actions';
 
-interface FavoriteOffersState {
+export interface FavoriteOffersState {
   favoriteOffers: SelectedOffer[];
   status: StateStatus;
   loading: boolean;
 }
 
-const initialState: FavoriteOffersState = {
+export const initialFavoriteOffersState: FavoriteOffersState = {
   favoriteOffers: [],
   loading: false,
   status: StateStatus.idle,
 };
 
-export const favoritesOffersReducer = createReducer(initialState, (builder) =>
+export const favoritesOffersReducer = createReducer(initialFavoriteOffersState, (builder) =>
   builder
     .addCase(fetchFavoriteOffersAction.pending, (state) => ({
       ...state,
@@ -38,6 +38,7 @@ export const favoritesOffersReducer = createReducer(initialState, (builder) =>
       return {
         ...state,
         status: StateStatus.idle,
+        loading: false
       };
     })
     .addCase(postFavoriteOfferAction.fulfilled, (state, {payload}) => {

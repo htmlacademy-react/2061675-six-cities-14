@@ -5,3 +5,4 @@ export * from './auth.ts';
 export * from './nearby-offers.ts';
 export * from './root-reducer.ts';
 export * from './comments.ts';
+export * from './favorite-offers.ts';

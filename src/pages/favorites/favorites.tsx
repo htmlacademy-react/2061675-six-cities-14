@@ -18,6 +18,7 @@ export const Favorites: React.FC = () => {
     <div className="page">
       <Header/>
       <main className="page__main page__main--favorites">
+        <div className="visually-hidden">Favorites offers</div>
         <div className="page__favorites-container container">
           {
             favoriteOffers.length ? (

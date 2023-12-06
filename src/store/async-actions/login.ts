@@ -23,6 +23,7 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
   }
 );
 
+
 export const loginAction = createAsyncThunk<void, Auth, {
   dispatch: AppDispatch;
   state: RootState;

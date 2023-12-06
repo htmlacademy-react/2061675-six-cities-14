@@ -6,6 +6,8 @@ import { store } from './store';
 import { checkAuthAction } from './store/async-actions';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react'
+import browserHistory from './browser-history.ts';
+import { HistoryRoute } from './components/history-route';
 
 store.dispatch(checkAuthAction());
 const root = ReactDOM.createRoot(
@@ -18,7 +20,9 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-        <App/>
+        <HistoryRoute history={browserHistory}>
+          <App/>
+        </HistoryRoute>
       </PersistGate>
     </Provider>
   </React.StrictMode>
