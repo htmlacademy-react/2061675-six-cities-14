@@ -3,21 +3,21 @@ import { StateStatus } from '../../const';
 import { createReducer, createSelector } from '@reduxjs/toolkit';
 import { fetchOffersAction, getSelectedOfferAction } from '../async-actions';
 
-interface OffersState {
+export interface OffersState {
   offers: OfferType[];
   selectedOffer: SelectedOffer | undefined;
   status: StateStatus;
   loading: boolean;
 }
 
-const initialState: OffersState = {
+export const initialOffersState: OffersState = {
   offers: [],
   selectedOffer: undefined,
   loading: false,
   status: StateStatus.idle,
 };
 
-export const offersReducer = createReducer(initialState, (builder) =>
+export const offersReducer = createReducer(initialOffersState, (builder) =>
   builder
     .addCase(fetchOffersAction.pending, (state) => ({
       ...state,
@@ -40,6 +40,7 @@ export const offersReducer = createReducer(initialState, (builder) =>
       return {
         ...state,
         status: StateStatus.idle,
+        loading: false,
       };
     })
     .addCase(getSelectedOfferAction.pending, (state) => ({
@@ -63,6 +64,7 @@ export const offersReducer = createReducer(initialState, (builder) =>
       return {
         ...state,
         status: StateStatus.idle,
+        loading: false,
       };
     })
 );
