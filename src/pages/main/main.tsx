@@ -85,7 +85,7 @@ export const Main: React.FC = () => {
                   <div className="cities__places-container container">
                     <section className="cities__places places">
                       <h2 className="visually-hidden">Places</h2>
-                      <b className="places__found">{offersInSelectedCity.length} places to stay in Amsterdam</b>
+                      <b className="places__found">{`${offersInSelectedCity.length} places to stay in ${selectedCity?.name}`}</b>
                       <SortOptions selectedSortOption={sortOption} onSortChange={handleSortChange}/>
                       <div className="cities__places-list places__list tabs__content">
                         <OffersList
@@ -104,7 +104,7 @@ export const Main: React.FC = () => {
                         <Map points={offers} selectedPoint={selectedPoint} city={city}/>
                       </section>
                     </div>
-                  </div> : <Empty/>
+                  </div> : <Empty city={`${selectedCity?.name}` || ''}/>
 
               }
             </div>
