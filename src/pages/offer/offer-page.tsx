@@ -41,32 +41,35 @@ export const OfferPage: React.FC = () => {
           <Loader/>
         ) : (
           offer &&
-          <main className="page__main page__main--offer">
-            <section className="offer">
-              <Offer offer={offer}/>
-              <section className="offer__map map">
-                <Map city={offer.city} points={nearbyOffers} selectedPoint={selectedPoint}/>
+          <>
+            <div className="visually-hidden">Offer info</div>
+            <main className="page__main page__main--offer">
+              <section className="offer">
+                <Offer offer={offer}/>
+                <section className="offer__map map">
+                  <Map city={offer.city} points={nearbyOffers} selectedPoint={selectedPoint}/>
+                </section>
               </section>
-            </section>
-            <div className="container">
-              <section className="near-places places">
-                <h2 className="near-places__title">Other places in the neighbourhood</h2>
-                <div className="near-places__list places__list">
-                  {nearbyOffers.map((no) => (
-                    <Card
-                      key={no.id}
-                      offer={no}
-                      classNameWrapper="near-places__image-wrapper"
-                      className="near-places__card"
-                      imgHeight="200"
-                      imgWidth="260"
-                      onCardHover={handleCardHover}
-                    />
-                  ))}
-                </div>
-              </section>
-            </div>
-          </main>
+              <div className="container">
+                <section className="near-places places">
+                  <h2 className="near-places__title">Other places in the neighbourhood</h2>
+                  <div className="near-places__list places__list">
+                    {nearbyOffers.map((no) => (
+                      <Card
+                        key={no.id}
+                        offer={no}
+                        classNameWrapper="near-places__image-wrapper"
+                        className="near-places__card"
+                        imgHeight="200"
+                        imgWidth="260"
+                        onCardHover={handleCardHover}
+                      />
+                    ))}
+                  </div>
+                </section>
+              </div>
+            </main>
+          </>
         )
       }
     </div>
