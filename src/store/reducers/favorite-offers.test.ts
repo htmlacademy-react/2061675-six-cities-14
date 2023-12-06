@@ -5,7 +5,7 @@ import { SelectedOffer } from '../../types';
 import { makeFakeSelectedOffer } from '../../utils';
 
 describe('favorites offers reducer', () => {
-  it('should set "Auth" with "fetchFavoriteOffersAction.pending" action', () => {
+  it('should set "FavoriteOffers" with "fetchFavoriteOffersAction.pending" action', () => {
     const expectedState: FavoriteOffersState = {
       ...initialFavoriteOffersState,
       loading: true,
@@ -17,7 +17,7 @@ describe('favorites offers reducer', () => {
     expect(result).toEqual(expectedState);
   });
 
-  it('should set "Auth" with "fetchFavoriteOffersAction.fulfilled" action', () => {
+  it('should set "FavoriteOffers" with "fetchFavoriteOffersAction.fulfilled" action', () => {
     const mockFavoriteOffers: SelectedOffer = makeFakeSelectedOffer();
     const expectedState: FavoriteOffersState = {
       ...initialFavoriteOffersState,
@@ -31,7 +31,7 @@ describe('favorites offers reducer', () => {
     expect(result).toEqual(expectedState);
   });
 
-  it('should set "Auth" with "fetchFavoriteOffersAction.pending" rejected', () => {
+  it('should set "FavoriteOffers" with "fetchFavoriteOffersAction.pending" rejected', () => {
     const expectedState: FavoriteOffersState = {
       ...initialFavoriteOffersState,
       loading: false,
@@ -43,7 +43,7 @@ describe('favorites offers reducer', () => {
     expect(result).toEqual(expectedState);
   });
 
-  it('should set "Auth" with "postFavoriteOfferAction.pending" fulfilled', () => {
+  it('should set "FavoriteOffers" with "postFavoriteOfferAction.pending" fulfilled', () => {
     const mockFavoriteOffers: SelectedOffer = makeFakeSelectedOffer();
     const expectedState: FavoriteOffersState = {
       ...initialFavoriteOffersState,
