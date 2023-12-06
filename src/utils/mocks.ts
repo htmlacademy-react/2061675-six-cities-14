@@ -141,3 +141,17 @@ export const makeFakeStore = (initialState?: Partial<RootState>): RootState => (
   },
   ...initialState ?? {},
 });
+
+export function setMockBrowserHistory() {
+  vi.mock('../browser-history', () => ({
+    default: {
+      location: { pathname: ''},
+      push(path: string) {
+        this.location.pathname = path;
+      },
+      back() {
+        this.location.pathname = '';
+      }
+    }
+  }));
+}
