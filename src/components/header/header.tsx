@@ -1,21 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppDispatch } from '../../hooks';
 import { useSelector } from 'react-redux';
 import { getAuthorizationStatusSelector, getUserInfoSelector } from '../../store/reducers';
-import { logoutAction } from '../../store/async-actions';
+import { fetchFavoriteOffersAction, logoutAction } from '../../store/async-actions';
+import { getFavoriteOffersNumberStateSelector } from '../../store/reducers/favorite-offers.ts';
 
 export const Header: React.FC = () => {
   const dispatch = useAppDispatch();
-  // const location = useLocation().pathname;
   const authStatus = useSelector(getAuthorizationStatusSelector);
   const loggedUser = (authStatus === AuthorizationStatus.Auth);
-  // const isLoginPage = (location === String(AppRoute.Login));
   const userInfo = useSelector(getUserInfoSelector);
+  const favoriteOffersNumber = useSelector(getFavoriteOffersNumberStateSelector);
   const handleLogoutClick = () => {
     dispatch(logoutAction());
   };
+
+  useEffect(() => {
+    dispatch(fetchFavoriteOffersAction());
+  }, []);
+
   return (
     <header className="header">
       <div className="container">
@@ -35,7 +40,7 @@ export const Header: React.FC = () => {
                         <div className="header__avatar-wrapper user__avatar-wrapper">
                         </div>
                         <span className="header__user-name user__name">{userInfo ? userInfo.email : ''}</span>
-                        <span className="header__favorite-count">3</span>
+                        <span className="header__favorite-count">{favoriteOffersNumber}</span>
                       </Link>
                     </li>
                     <li className="header__nav-item">

@@ -65,3 +65,9 @@ export const getFavoriteOffersStateSelector = createSelector(
   favoriteOffersStateSelector,
   (state) => state.favoriteOffers
 );
+
+export const getFavoriteOffersNumberStateSelector = createSelector(
+  favoriteOffersStateSelector,
+  (state) => state.favoriteOffers.length
+);
+

@@ -17,12 +17,10 @@ import {
   getSelectedCitySelector
 } from '../../store/reducers';
 import { changeCityAction } from '../../store/actions';
+import { SortItems } from '../../const';
 
-type MainProps = {
-  placesCount: number;
-}
-export const Main: React.FC<MainProps> = ({placesCount}) => {
-  const [sortOption, setSortOption] = useState('Popular');
+export const Main: React.FC = () => {
+  const [sortOption, setSortOption] = useState<string>(SortItems.Popular);
   const [selectedPoint, setSelectedPoint] = useState<OfferType['id'] | null>(null);
 
   const dispatch = useAppDispatch();
@@ -41,8 +39,8 @@ export const Main: React.FC<MainProps> = ({placesCount}) => {
     setSelectedPoint(offerId);
   };
 
-  const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSortOption(event.target.value);
+  const handleSortChange = (option: string) => {
+    setSortOption(option);
   };
   useEffect(() => {
     if (!selectedCity) {
@@ -55,7 +53,6 @@ export const Main: React.FC<MainProps> = ({placesCount}) => {
     }
     dispatch(fetchOffersAction());
   }, []);
-
   return (
     <div className="page page--gray page--main">
       <Header/>
@@ -88,7 +85,7 @@ export const Main: React.FC<MainProps> = ({placesCount}) => {
                   <div className="cities__places-container container">
                     <section className="cities__places places">
                       <h2 className="visually-hidden">Places</h2>
-                      <b className="places__found">{placesCount} places to stay in Amsterdam</b>
+                      <b className="places__found">{offersInSelectedCity.length} places to stay in Amsterdam</b>
                       <SortOptions selectedSortOption={sortOption} onSortChange={handleSortChange}/>
                       <div className="cities__places-list places__list tabs__content">
                         <OffersList

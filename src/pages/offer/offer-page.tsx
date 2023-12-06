@@ -18,11 +18,7 @@ export const OfferPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const isLoading = useSelector(getLoadingSelector);
   const nearbyOffers = useSelector(getNearbyOffersSelector);
-  // let city = MockCities.find((c) => c.name === selectedCity.name);
-  //
-  // if (city === undefined) {
-  //   city = MockCities[1];
-  // }
+
   const handleCardHover = (offerId: OfferType['id'] | null) => {
     setSelectedPoint(offerId);
   };

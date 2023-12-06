@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card } from '../card';
 import { OfferType } from '../../types';
+import { SortItems } from '../../const';
 
 type OffersListProps = {
   sortOption?: string;
@@ -24,11 +25,11 @@ export const OffersList: React.FC<OffersListProps> = ({
   sortOption
 }) => {
   const getSortedOffers = (): OfferType[] => {
-    if (sortOption === 'PriceLowToHigh') {
+    if (sortOption === SortItems.PriceLowToHigh) {
       return offers.slice().sort((a: OfferType, b: OfferType) => a.price - b.price);
-    } else if (sortOption === 'PriceHighToLow') {
+    } else if (sortOption === SortItems.PriceHighToLow) {
       return offers.slice().sort((a: OfferType, b: OfferType) => b.price - a.price);
-    } else if (sortOption === 'TopRatedFirst') {
+    } else if (sortOption === SortItems.TopRatedFirst) {
       return offers.slice().sort((a: OfferType, b: OfferType) => b.rating - a.rating);
     } else {
       return offers;

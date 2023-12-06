@@ -1,18 +1,8 @@
 export const Stars = [
   {
-    value: '1',
-    id: '1-stars',
-    title: 'terribly'
-  },
-  {
-    value: '2',
-    id: '2-stars',
-    title: 'badly'
-  },
-  {
-    value: '3',
-    id: '3-stars',
-    title: 'not bad'
+    value: '5',
+    id: '5-stars',
+    title: 'perfect'
   },
   {
     value: '4',
@@ -20,8 +10,19 @@ export const Stars = [
     title: 'good'
   },
   {
-    value: '5',
-    id: '5-stars',
-    title: 'perfect'
+    value: '3',
+    id: '3-stars',
+    title: 'not bad'
+  },
+  {
+    value: '2',
+    id: '2-stars',
+    title: 'badly'
+  },
+
+  {
+    value: '1',
+    id: '1-stars',
+    title: 'terribly'
   },
 ];

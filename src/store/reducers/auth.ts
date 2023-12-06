@@ -27,23 +27,6 @@ export const authReducer: Reducer<typeof initialState> = createReducer(initialSt
       ...state,
       authorizationStatus: payload.authorizationStatus
     }))
-    // .addCase(checkAuthAction.pending, (state) => ({
-    //   ...state,
-    //   loading: true,
-    //   status: StateStatus.loading,
-    // }))
-    // .addCase(checkAuthAction.fulfilled, (state) => ({
-    //   ...state,
-    //   authorizationStatus: AuthorizationStatus.Auth,
-    //   loading: false,
-    //   status: StateStatus.idle,
-    // }))
-    // .addCase(checkAuthAction.rejected, (state) => ({
-    //   ...state,
-    //   authorizationStatus: AuthorizationStatus.NoAuth,
-    //   loading: false,
-    //   status: StateStatus.idle,
-    // }))
     .addCase(loginAction.pending, (state) => ({
       ...state,
       loading: true,

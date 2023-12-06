@@ -32,25 +32,23 @@ export const ReviewsForm: React.FC<ReviewsFormProps> = ({offerId}) => {
     <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
-        {
-          Stars.map((star) => (
-            <div key={star.id}>
-              <input
-                className="form__rating-input visually-hidden"
-                name="rating"
-                value={star.value}
-                id={star.id}
-                type="radio"
-                onChange={handleRatingChange}
-              />
-              <label htmlFor={star.id} className="reviews__rating-label form__rating-label" title={star.title}>
-                <svg className="form__star-image" width="37" height="33">
-                  <use xlinkHref="#icon-star"></use>
-                </svg>
-              </label>
-            </div>
-          ))
-        }
+        {Stars.map((star) => (
+          <React.Fragment key={star.id}>
+            <input
+              className="form__rating-input visually-hidden"
+              name="rating"
+              value={star.value}
+              id={star.id}
+              type="radio"
+              onChange={handleRatingChange}
+            />
+            <label htmlFor={star.id} className="reviews__rating-label form__rating-label" title={star.title}>
+              <svg className="form__star-image" width="37" height="33">
+                <use xlinkHref="#icon-star"></use>
+              </svg>
+            </label>
+          </React.Fragment>
+        ))}
       </div>
       <textarea className="reviews__textarea form__textarea" id="review" name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"

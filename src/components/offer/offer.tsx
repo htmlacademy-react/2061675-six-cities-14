@@ -42,7 +42,7 @@ export const Offer: React.FC<OfferProps> = ({offer}) => {
           </div>
           <div className="offer__rating rating">
             <div className="offer__stars rating__stars">
-              <span style={{'width': offer.rating}}></span>
+              <span style={{'width': (offer.rating * 100) / 5}}></span>
               <span className="visually-hidden">Rating</span>
             </div>
             <span className="offer__rating-value rating__value">{offer.rating}</span>
