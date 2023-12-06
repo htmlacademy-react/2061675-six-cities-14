@@ -1,10 +1,10 @@
-import { AppRoute } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import { createAction } from '@reduxjs/toolkit';
 import { UserAuthData } from '../../types';
 
-// export const requireAuthorization = createAction<{
-//   authorizationStatus: AuthorizationStatus;
-// }>('USER/REQUIRE_AUTHORIZATION');
+export const requireAuthorization = createAction<{
+  authorizationStatus: AuthorizationStatus;
+}>('USER/REQUIRE_AUTHORIZATION');
 
 export const redirectToRoute = createAction<{
   appRoute: AppRoute;
