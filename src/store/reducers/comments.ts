@@ -43,7 +43,7 @@ export const commentsReducer = createReducer(initialCommentState, (builder) =>
       };
     })
     .addCase(addCommentAction, (state, {payload}) => {
-      state.comments.push(payload.comments);
+      state.comments.unshift(payload.comments);
     })
 );
 
@@ -57,8 +57,13 @@ export const commentsStateSelector = (
 
 export const getCommentsSelector = createSelector(
   commentsStateSelector,
-  (state) => state.comments
-);
+  (state) => {
+    const comments = [...state.comments];
+    return comments.sort((a, b) => {
+      // @ts-ignore
+      return new Date(b.date) - new Date(a.date);
+    });
+  });
 
 export const getCommentsLoadingSelector = createSelector(
   commentsStateSelector,

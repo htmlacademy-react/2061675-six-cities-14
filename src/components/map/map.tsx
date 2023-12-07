@@ -28,7 +28,7 @@ export const Map: React.FC<MapProps> = ({city, points, selectedPoint}) => {
   useEffect(() => {
     if (map) {
       const markerLayer = layerGroup().addTo(map);
-      points.forEach((point) => {
+      points.filter((p) => p.city.name === city.name).forEach((point) => {
         const marker = new Marker({
           lat: point.location.latitude,
           lng: point.location.longitude,
