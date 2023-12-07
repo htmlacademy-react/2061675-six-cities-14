@@ -6,6 +6,7 @@ import { postFavoriteOfferAction } from '../../store/async-actions';
 import { useSelector } from 'react-redux';
 import { getAuthorizationStatusSelector } from '../../store/reducers';
 import { AppRoute, AuthorizationStatus } from '../../const';
+import { getRating } from '../../utils';
 
 export type CardProps = {
   offer: OfferType;
@@ -82,7 +83,7 @@ export const Card: React.FC<CardProps> = ({
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{'width': (offer.rating * 100) / 5}}></span>
+            <span style={{'width': getRating(offer.rating)}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { ReviewsList } from '../reviews-list';
 import { SelectedOffer } from '../../types';
+import { getRating } from '../../utils';
 
 type OfferProps = {
   offer: SelectedOffer;
@@ -36,7 +37,7 @@ export const Offer: React.FC<OfferProps> = ({offer}) => (
         </div>
         <div className="offer__rating rating">
           <div className="offer__stars rating__stars">
-            <span style={{'width': (offer.rating * 100) / 5}}></span>
+            <span style={{'width': getRating(offer.rating)}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
           <span className="offer__rating-value rating__value">{offer.rating}</span>
@@ -69,7 +70,7 @@ export const Offer: React.FC<OfferProps> = ({offer}) => (
         <div className="offer__host">
           <h2 className="offer__host-title">Meet the host</h2>
           <div className="offer__host-user user">
-            <div className="offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper">
+            <div className={`offer__avatar-wrapper user__avatar-wrapper ${offer.host.isPro ? 'offer__avatar-wrapper--pro' : ''}`}>
               <img className="offer__avatar user__avatar" src={offer.host.avatarUrl} width="74" height="74"
                 alt="Host avatar"
               />
