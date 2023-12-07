@@ -33,10 +33,6 @@ export const OfferPage: React.FC = () => {
     return <div>invalid id</div>;
   }
 
-  const slicedNearbyOffers = (nearbyOffers.length >= 10)
-    ? nearbyOffers.slice(0, 3)
-    : nearbyOffers;
-
   return (
     <div className="page">
       <Header/>
@@ -58,7 +54,7 @@ export const OfferPage: React.FC = () => {
                 <section className="near-places places">
                   <h2 className="near-places__title">Other places in the neighbourhood</h2>
                   <div className="near-places__list places__list">
-                    {slicedNearbyOffers.map((no) => (
+                    {nearbyOffers.map((no) => (
                       <Card
                         key={no.id}
                         offer={no}
