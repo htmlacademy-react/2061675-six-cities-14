@@ -1,17 +1,16 @@
 import React from 'react';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute } from '../../const';
 import { Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { getAuthorizationStatusSelector } from '../../store/reducers';
+import { getToken } from '../../services';
 
 type PrivateRouteProps = {
   children: JSX.Element;
 }
 
 export const PrivateRoute: React.FC<PrivateRouteProps> = ({children}) => {
-  const authorizationStatus = useSelector(getAuthorizationStatusSelector);
+  const token = getToken();
   return (
-    authorizationStatus === AuthorizationStatus.Auth
+    token
       ? children
       : <Navigate to={AppRoute.Login}/>
   );
