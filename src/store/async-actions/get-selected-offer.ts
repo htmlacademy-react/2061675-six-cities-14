@@ -13,7 +13,7 @@ export const getSelectedOfferAction = createAsyncThunk<SelectedOffer, string, { 
       return await HttpClient.get(`/six-cities/offers/${id}`);
     } catch (e: any) {
       return thunkAPI.rejectWithValue({
-        message: e.message
+        message: e.message as string
       });
     }
   }

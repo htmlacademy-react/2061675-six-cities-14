@@ -15,7 +15,7 @@ export const getNearbyOffers = createAsyncThunk<OfferType[], { offerId: string }
         return await HttpClient.get(`/six-cities/offers/${offerId}/nearby`);
       } catch (e: any) {
         return thunkAPI.rejectWithValue({
-          message: e.message
+          message: e.message as string
         });
       }
     }

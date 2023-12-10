@@ -69,6 +69,7 @@ export class HttpClient {
   }
 
   static delete<T>(url: string, data: any): Promise<T> {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     return HttpClient.instance.delete<T>(url, {data}).then((x) => x.data);
   }
 }

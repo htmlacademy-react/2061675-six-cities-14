@@ -10,11 +10,10 @@ export const fetchOffersAction = createAsyncThunk<OfferType[], undefined, { reje
   'CITIES/FETCH_OFFERS',
   async (_, thunkAPI) => {
     try {
-      // await new Promise((resolve) => setTimeout(resolve, 5000));
       return await HttpClient.get('/six-cities/offers');
     } catch (e: any) {
       return thunkAPI.rejectWithValue({
-        message: e.message
+        message: e.message as string
       });
     }
   }

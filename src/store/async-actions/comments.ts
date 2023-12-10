@@ -15,12 +15,11 @@ export const fetchCommentsAction = createAsyncThunk<Review[], { offerId: string 
       return await HttpClient.get<Review[]>(`/six-cities/comments/${offerId}`);
     } catch (error: any) {
       return thunkAPI.rejectWithValue({
-        message: error.message
+        message: error.message as string
       });
     }
   }
 );
-
 
 export const postCommentAction = createAsyncThunk<void, { commentData: PostReview; offerId: OfferType['id'] }, {
   dispatch: AppDispatch;

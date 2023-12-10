@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 import { checkAuthAction } from './store/async-actions';
 import { persistStore } from 'redux-persist';
-import { PersistGate } from 'redux-persist/integration/react'
+import { PersistGate } from 'redux-persist/integration/react';
 import browserHistory from './browser-history.ts';
 import { HistoryRoute } from './components/history-route';
 
