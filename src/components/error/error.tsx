@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './error.module.scss';
+import './error.scss';
 
 export const Error: React.FC = () => (
   <div className='not-found'>
