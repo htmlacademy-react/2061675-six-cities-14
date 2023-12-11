@@ -53,5 +53,5 @@ export const nearbyOffersSelector = (
 
 export const getNearbyOffersSelector = createSelector(
   nearbyOffersSelector,
-  (state) => state.nearbyOffers
+  (state) => state.nearbyOffers.slice(0, 3)
 );

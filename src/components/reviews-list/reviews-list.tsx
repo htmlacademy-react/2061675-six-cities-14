@@ -27,24 +27,20 @@ export const ReviewsList: React.FC = () => {
     : comments;
 
   return (
-    <>
-      {
-        isLoading ? <Loader/> : (
-          <section className="offer__reviews reviews">
-            <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{comments.length}</span></h2>
-            <ul className="reviews__list">
-              {slicedComments.map((review) => (
-                <Review review={review} key={review.id}/>
-              ))}
-            </ul>
-            {
-              loggedUser ? (
-                id && <ReviewsForm offerId={id}/>
-              ) : ''
-            }
-          </section>
-        )
-      }
-    </>
+    isLoading ? <Loader/> : (
+      <section className="offer__reviews reviews">
+        <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{comments.length}</span></h2>
+        <ul className="reviews__list">
+          {slicedComments.map((review) => (
+            <Review review={review} key={review.id}/>
+          ))}
+        </ul>
+        {
+          loggedUser ? (
+            id && <ReviewsForm offerId={id}/>
+          ) : ''
+        }
+      </section>
+    )
   );
 };

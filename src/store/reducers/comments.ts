@@ -59,10 +59,11 @@ export const getCommentsSelector = createSelector(
   commentsStateSelector,
   (state) => {
     const comments = [...state.comments];
-    return comments.sort((a, b) => {
+    return comments.sort((a, b) =>
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      return new Date(b.date) - new Date(a.date);
-    });
+      new Date(b.date) - new Date(a.date)
+    );
   });
 
 export const getCommentsLoadingSelector = createSelector(

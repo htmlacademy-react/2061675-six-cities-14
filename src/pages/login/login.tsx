@@ -1,6 +1,6 @@
-import React, { FormEvent, useRef } from 'react';
+import React, { FormEvent, useMemo, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
+import { AppRoute, DefaultCities } from '../../const';
 import { useAppDispatch } from '../../hooks';
 import { loginAction } from '../../store/async-actions';
 
@@ -9,8 +9,10 @@ export const Login: React.FC = () => {
   const passwordRef = useRef<HTMLInputElement | null>(null);
 
   const dispatch = useAppDispatch();
-  // const navigate = useNavigate();
-
+  const randomCity = useMemo(() => {
+    const cityIndex = Math.floor(Math.random() * DefaultCities.length);
+    return DefaultCities[cityIndex];
+  }, []);
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
@@ -78,8 +80,8 @@ export const Login: React.FC = () => {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="#">
-                <span>Amsterdam</span>
+              <a className="locations__item-link" href={`/?city=${randomCity.name}`}>
+                <span>{randomCity.name}</span>
               </a>
             </div>
           </section>

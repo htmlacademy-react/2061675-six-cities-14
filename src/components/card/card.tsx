@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { OfferType } from '../../types/';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks';
 import { postFavoriteOfferAction } from '../../store/async-actions';
+import { useSelector } from 'react-redux';
+import { getAuthorizationStatusSelector } from '../../store/reducers';
+import { AppRoute, AuthorizationStatus } from '../../const';
+import { getRating } from '../../utils';
 
 export type CardProps = {
   offer: OfferType;
@@ -25,6 +29,8 @@ export const Card: React.FC<CardProps> = ({
 }) => {
   const dispatch = useAppDispatch();
   const [isBookmarkButtonActive, setBookmarkButtonActive] = useState(offer.isFavorite);
+  const authStatus = useSelector(getAuthorizationStatusSelector);
+  const navigate = useNavigate();
 
   function handleMouseEnter() {
     onCardHover?.(offer.id);
@@ -35,6 +41,9 @@ export const Card: React.FC<CardProps> = ({
   }
 
   const handleBookmarkButtonClick = () => {
+    if (authStatus !== AuthorizationStatus.Auth) {
+      navigate(AppRoute.Login);
+    }
     dispatch(postFavoriteOfferAction({offerId: offer.id, status: Number(!isBookmarkButtonActive)}));
     setBookmarkButtonActive((prev) => !prev);
   };
@@ -74,7 +83,7 @@ export const Card: React.FC<CardProps> = ({
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{'width': (offer.rating * 100) / 5}}></span>
+            <span style={{'width': getRating(offer.rating)}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

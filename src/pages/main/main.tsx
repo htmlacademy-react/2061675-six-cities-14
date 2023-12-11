@@ -17,7 +17,9 @@ import {
   getSelectedCitySelector
 } from '../../store/reducers';
 import { changeCityAction } from '../../store/actions';
-import { SortItems } from '../../const';
+import { DefaultCities, SortItems } from '../../const';
+import { capitalizeFirstLetter } from '../../utils';
+import { useSearchParams } from 'react-router-dom';
 
 export const Main: React.FC = () => {
   const [sortOption, setSortOption] = useState<string>(SortItems.Popular);
@@ -29,6 +31,8 @@ export const Main: React.FC = () => {
   const offers = useSelector(getOffersSelector);
   let city = citiesSet.find((c) => c.name === selectedCity?.name);
   const isLoading = useSelector(getLoadingSelector);
+
+  const [searchParams] = useSearchParams();
 
   if (city === undefined) {
     city = citiesSet[0];
@@ -43,12 +47,11 @@ export const Main: React.FC = () => {
     setSortOption(option);
   };
   useEffect(() => {
-    if (!selectedCity) {
+    const defaultCityName = searchParams.get('city') ?? 'Paris';
+    const defaultCity = DefaultCities.find((c) => c.name === defaultCityName);
+    if (defaultCity) {
       dispatch(changeCityAction({
-        city: {
-          name: 'Paris',
-          location: {zoom: 13, latitude: 48.85661, longitude: 2.351499}
-        }
+        city: defaultCity
       }));
     }
     dispatch(fetchOffersAction());
@@ -66,7 +69,7 @@ export const Main: React.FC = () => {
               {citiesSet.map((c) => (
                 <li key={c.name} className="locations__item">
                   <Location
-                    locationName={c.name}
+                    locationName={capitalizeFirstLetter(c.name)}
                     active={`${selectedCity?.name === c.name ? 'locations__item-link tabs__item tabs__item--active' : 'locations__item-link tabs__item'}`}
                     onClick={() => dispatch(changeCityAction({city: c}))}
                   />

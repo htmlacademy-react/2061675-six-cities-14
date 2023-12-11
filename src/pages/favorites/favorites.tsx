@@ -15,9 +15,9 @@ export const Favorites: React.FC = () => {
     dispatch(fetchFavoriteOffersAction());
   }, []);
   return (
-    <div className="page">
+    <div className={`page ${!favoriteOffers.length ? 'page--favorites-empty' : ''}`}>
       <Header/>
-      <main className="page__main page__main--favorites">
+      <main className={`page__main page__main--favorites ${favoriteOffers.length === 0 ? 'page__main--favorites-empty' : ''}`}>
         <div className="visually-hidden">Favorites offers</div>
         <div className="page__favorites-container container">
           {

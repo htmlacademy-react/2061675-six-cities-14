@@ -15,7 +15,7 @@ export const fetchFavoriteOffersAction = createAsyncThunk<SelectedOffer[], undef
       return await HttpClient.get('/six-cities/favorite');
     } catch (e: any) {
       return thunkAPI.rejectWithValue({
-        message: e.message
+        message: e.message as string
       });
     }
   }
@@ -30,7 +30,7 @@ export const postFavoriteOfferAction = createAsyncThunk<SelectedOffer, { status:
       return await HttpClient.post(`/six-cities/favorite/${offerId}/${status}`, status);
     } catch (e: any) {
       return thunkAPI.rejectWithValue({
-        message: e.message
+        message: e.message as string
       });
     }
   }

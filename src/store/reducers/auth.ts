@@ -1,8 +1,9 @@
 import { AppRoute, AuthorizationStatus, StateStatus } from '../../const';
 import { createReducer, createSelector, Reducer } from '@reduxjs/toolkit';
 import { requireAuthorization, setUserInfoAction } from '../actions';
-import { loginAction, logoutAction } from '../async-actions';
+import { checkAuthAction, loginAction, logoutAction } from '../async-actions';
 import { UserAuthData } from '../../types';
+import { getToken } from '../../services';
 
 export interface AuthState {
   authorizationStatus: AuthorizationStatus;
@@ -26,15 +27,15 @@ export const authReducer: Reducer<typeof authInitialState> = createReducer(authI
       ...state,
       authorizationStatus: payload.authorizationStatus
     }))
-    // .addCase(checkAuthAction.fulfilled, (state) => {
-    //   if (getToken() !== '') {
-    //     state.authorizationStatus = AuthorizationStatus.Auth;
-    //   }
-    // })
-    // .addCase(checkAuthAction.rejected, (state) => ({
-    //   ...state,
-    //   authorizationStatus: AuthorizationStatus.NoAuth
-    // }))
+    .addCase(checkAuthAction.fulfilled, (state) => {
+      if (getToken() !== '') {
+        state.authorizationStatus = AuthorizationStatus.Auth;
+      }
+    })
+    .addCase(checkAuthAction.rejected, (state) => ({
+      ...state,
+      authorizationStatus: AuthorizationStatus.NoAuth
+    }))
     .addCase(loginAction.pending, (state) => ({
       ...state,
       loading: true,

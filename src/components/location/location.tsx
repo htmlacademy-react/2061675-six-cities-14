@@ -8,7 +8,7 @@ type LocationProps = {
   onClick: () => void;
 }
 export const Location: React.FC<LocationProps> = ({locationName, active, onClick}) => (
-  <Link to={AppRoute.Main} className={`locations__item-link tabs__item + ${active}`} onClick={onClick}>
+  <Link to={AppRoute.Main} className={`locations__item-link tabs__item ${active}`} onClick={onClick}>
     <span>{locationName}</span>
   </Link>
 );

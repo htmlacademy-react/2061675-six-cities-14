@@ -1,6 +1,6 @@
 import React from 'react';
 import { Review as ReviewType } from '../../types';
-import { dateFormat } from '../../utils';
+import { dateFormat, getRating } from '../../utils';
 
 type ReviewProps = {
   review: ReviewType;
@@ -20,7 +20,7 @@ export const Review: React.FC<ReviewProps> = ({review}) => (
     <div className="reviews__info">
       <div className="reviews__rating rating">
         <div className="reviews__stars rating__stars">
-          <span style={{'width': ((review.rating * 100) / 5) - 2}}></span>
+          <span style={{'width': getRating(review.rating)}}></span>
           <span className="visually-hidden">Rating</span>
         </div>
       </div>
