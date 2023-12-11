@@ -1,4 +1,4 @@
-import React, { FormEvent, useMemo, useRef } from 'react';
+import React, { FormEvent, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoute, DefaultCities } from '../../const';
 import { useAppDispatch } from '../../hooks';
@@ -7,12 +7,27 @@ import { loginAction } from '../../store/async-actions';
 export const Login: React.FC = () => {
   const emailRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
+  const [isValid, setIsValid] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
   const randomCity = useMemo(() => {
     const cityIndex = Math.floor(Math.random() * DefaultCities.length);
     return DefaultCities[cityIndex];
   }, []);
+  const checkIsValid = () => {
+    const login = emailRef.current?.value;
+    const password = passwordRef.current?.value;
+
+    if(!password || !login || /\s/g.test(password)) {
+      setIsValid(false);
+      return;
+    }
+
+    const re = /.*(\p{L}(?=.*\d)|\d(?=.*\p{L})).*/u;
+
+    const isValidForm = re.test(password);
+    setIsValid(isValidForm);
+  };
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
@@ -57,6 +72,7 @@ export const Login: React.FC = () => {
                   type="email"
                   name="email"
                   placeholder="Email"
+                  onInput={checkIsValid}
                 />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
@@ -68,11 +84,13 @@ export const Login: React.FC = () => {
                   type="password"
                   name="password"
                   placeholder="Password"
+                  onInput={checkIsValid}
                 />
               </div>
               <button
                 className="login__submit form__submit button"
                 type="submit"
+                disabled={!isValid}
                 // onClick={() => navigate(AppRoute.Main)}
               >Sign in
               </button>
